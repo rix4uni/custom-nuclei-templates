@@ -1,1 +1,1 @@
-# My-Custom-Nuclei-Template
+# Custom-Nuclei-Template
