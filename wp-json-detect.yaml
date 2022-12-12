@@ -3,7 +3,7 @@ id: wp-json-detect
 info:
   name: Wordpress Users Disclosure
   author: rix4uni
-  severity: info
+  severity: Critical
   reference:
     - https://hackerone.com/reports/1735586
   metadata:
