@@ -1,4 +1,4 @@
-id: js-leak-automation
+id: js-leaks-automation
 
 info:
   name: LFI
