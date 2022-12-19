@@ -141,3 +141,4 @@ requests:
           - 'twitterKey'
           - 'twitterSecret'
           - 'wordpress_password'
+          - 'API-Key'
