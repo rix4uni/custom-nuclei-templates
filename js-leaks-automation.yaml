@@ -301,3 +301,4 @@ requests:
           - 'username'
           - 'xoxa-2'
           - 'xoxr'
+          - 'awsAccessKey'
