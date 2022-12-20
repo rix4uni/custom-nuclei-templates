@@ -308,3 +308,7 @@ requests:
           - 'Akismet-API'
           - 'akismet-api'
           - 'akismet-api-key'
+          - 'ClientId'
+          - 'AuthParameters'
+          - 'AuthFlow'
+          - 'DEVICE_KEY'
