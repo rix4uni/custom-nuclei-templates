@@ -312,3 +312,4 @@ requests:
           - 'AuthParameters'
           - 'AuthFlow'
           - 'DEVICE_KEY'
+          - 'public_vapid_key'
