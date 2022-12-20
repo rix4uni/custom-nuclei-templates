@@ -302,3 +302,4 @@ requests:
           - 'xoxa-2'
           - 'xoxr'
           - 'awsAccessKey'
+          - 'awsSecretKey'
