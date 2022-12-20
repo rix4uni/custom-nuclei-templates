@@ -303,3 +303,5 @@ requests:
           - 'xoxr'
           - 'awsAccessKey'
           - 'awsSecretKey'
+          - 'aviaryApiKey'
+          - 'youtubeApiKey'
