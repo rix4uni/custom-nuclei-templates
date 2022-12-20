@@ -305,3 +305,6 @@ requests:
           - 'awsSecretKey'
           - 'aviaryApiKey'
           - 'youtubeApiKey'
+          - 'Akismet-API'
+          - 'akismet-api'
+          - 'akismet-api-key'
