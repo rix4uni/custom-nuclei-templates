@@ -1,0 +1,31 @@
+id: xss-checker
+
+info:
+  name: Xss Parameter Detection Template
+  author: rix4uni
+  severity: low
+  description: Searches for the pattern query= on passed URLs.
+  reference: https://riptutorial.com/xss/example/31284/search-results-example
+  tags: xss,xss-checker
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}<image/src/onerror=confirm(1)>"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - '<image/src/onerror=confirm(1)>'
+        condition: and
+
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: header
+        words:
+          - "text/html"
