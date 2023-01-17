@@ -36,6 +36,9 @@ requests:
 
     matchers-condition: and
     matchers:
+      - type: word
+        words:
+          - "[core]"
       - type: status
         status:
           - 200
