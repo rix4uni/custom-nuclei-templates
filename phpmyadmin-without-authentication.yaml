@@ -1,0 +1,35 @@
+id: phpmyadmin-without-authentication
+
+info:
+  name: PhpMyAdmin Setup is Accessible Without Authentication
+  author: rix4uni
+  severity: medium
+  description: Searches for the pattern /phpmyadmin/setup/index.php on passed URLs.
+  reference: https://hackerone.com/reports/297339
+  metadata:
+    google-query: inurl:"phpMyAdmin/setup/index.php"
+  tags: phpmyadmin,authetication
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/phpmyadmin/setup/index.php'
+      - '{{BaseURL}}/phpMyAdmin/setup/index.php'
+      - '{{BaseURL}}/admin/phpMyAdmin/setup/index.php'
+      - '{{BaseURL}}/phpmyadmin/scripts/setup.php'
+      - '{{BaseURL}}/phpMyAdmin/main.php'
+      - '{{BaseURL}}/phpmyadmin/pma/index.php'
+
+    threads: 80
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "Overview"
+          - "phpMyAdmin"
+      - type: status
+        status:
+          - 200
+          - 301
+          - 302
