@@ -27,7 +27,7 @@ requests:
       - type: word
         words:
           - "Overview"
-          - "phpMyAdmin"
+          - "<title>phpMyAdmin"
       - type: status
         status:
           - 200
