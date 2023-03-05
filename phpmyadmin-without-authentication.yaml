@@ -21,8 +21,7 @@ requests:
       - '{{BaseURL}}/phpMyAdmin/main.php'
       - '{{BaseURL}}/phpmyadmin/pma/index.php'
 
-    threads: 80
-
+    stop-at-first-match: true
     matchers-condition: and
     matchers:
       - type: word
