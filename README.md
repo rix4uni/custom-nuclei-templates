@@ -1,1 +1,1 @@
-# Custom-Nuclei-Template
+# custom-nuclei-templates
