@@ -24,12 +24,20 @@ requests:
       - '{{BaseURL}}/wp-json/wp/v2/users/7'
       - '{{BaseURL}}/wp-json/wp/v2/users/8'
 
+    stop-at-first-match: true
     matchers-condition: and
     matchers:
       - type: word
         part: body
         words:
-          - 'name'
+          - '"id":1,"name":'
+          - '"id":2,"name":'
+          - '"id":3,"name":'
+          - '"id":4,"name":'
+          - '"id":5,"name":'
+          - '"id":6,"name":'
+          - '"id":7,"name":'
+          - '"id":8,"name":'
       - type: status
         status:
           - 200
