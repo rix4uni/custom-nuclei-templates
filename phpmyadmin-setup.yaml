@@ -1,0 +1,53 @@
+id: phpmyadmin-setup
+
+info:
+  name: PhpMyAdmin Setup File - Detect
+  author: rix4uni
+  severity: medium
+  description: Multiple phpMyAdmin setup files were detected.
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
+    cvss-score: 5.3
+    cwe-id: CWE-200
+  reference: https://hackerone.com/reports/297339
+  metadata:
+    google-query: inurl:"phpMyAdmin/setup/index.php"
+    shodan-query: http.html:"phpMyAdmin"
+  tags: phpmyadmin,authetication,misconfig
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/setup/index.php"
+      - "{{BaseURL}}/phpmyadmin/setup/index.php"
+      - "{{BaseURL}}/phpMyAdmin/setup/index.php"
+      - "{{BaseURL}}/admin/phpMyAdmin/setup/index.php"
+      - "{{BaseURL}}/phpmyadmin/scripts/setup.php"
+      - "{{BaseURL}}/phpMyAdmin/main.php"
+      - "{{BaseURL}}/phpmyadmin/pma/index.php"
+      - "{{BaseURL}}/_phpmyadmin/scripts/setup.php"
+      - "{{BaseURL}}/forum/phpmyadmin/scripts/setup.php"
+      - "{{BaseURL}}/php/phpmyadmin/scripts/setup.php"
+      - "{{BaseURL}}/typo3/phpmyadmin/scripts/setup.php"
+      - "{{BaseURL}}/web/phpmyadmin/scripts/setup.php"
+      - "{{BaseURL}}/xampp/phpmyadmin/scripts/setup.php"
+      - "{{BaseURL}}/sysadmin/phpMyAdmin/scripts/setup.php"
+      - "{{BaseURL}}/pma/setup/index.php"
+      - "{{BaseURL}}/admin/pma/setup/index.php"
+      - "{{BaseURL}}/phpmyadmin/setup/"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "Overview"
+          - "Welcome to"
+          - "You want to configure phpMyAdmin using web interface"
+          - "<title>phpMyAdmin setup</title>"
+        condition: or
+
+      - type: status
+        status:
+          - 200
