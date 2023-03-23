@@ -1,7 +1,7 @@
 id: generic-api-tokens
 
 info:
-  name: Generic Tokens
+  name: Generic Api & Tokens Detection
   author: rix4uni
   severity: info
   metadata:
@@ -91,3 +91,22 @@ requests:
           - '(?i)twilio.{0,20}\b(sk[a-f0-9]{32})\b' #twilio-api-key
           - 'https://(?:www.)?hooks\.zapier\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/'  #zapier-webhook-token
           - 'https://creator\.zoho\.com/api/[A-Za-z0-9/\-_\.]+\?authtoken=[A-Za-z0-9]+' #zoho-webhook-token
+          - '\b(sk[a-zA-Z0-9]{178})\b'  #sanity_api_token
+          - '\b([a-zA-Z0-9]{32})\b' #possible algolia-api-key,trello_api,1forge-api-key,abstractapi
+          - '\b([a-zA-Z0-9]{40})\b' #possible xsolla-api-key
+          - '\b(skey_test_[a-zA-Z0-9]{19})\b' #omise-secret-key
+          - '\b([a-zA-Z0-9]{64})\b' #possible trello_token,alienvault-api,binance-api
+          - '\b([a-zA-Z0-9]{80})\b' #possible abuseipdb-api
+          - '\b([a-zA-Z0-9]{33})\b' #possible adoptapet-api
+          - '\b([a-zA-Z0-9]{14})\b' #possible airtable-api
+          - '\b([a-zA-Z0-9]{30})\b' #possible amdoren-api
+          - '\b([a-zA-Z0-9]{43})\b' #possible bitcoinaverage-api
+          - '\b([a-zA-Z0-9]{86})\b' #possible bitrise-api
+          - '\b([a-zA-Z0-9-_.~]{35,48})\b'  #possible blitapp-api
+          - '\b([a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4})\b' #possible block.io-api
+          - '\b([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[0-9a-f]{12})\b'  #possible api.blockchain.com-api
+          - '\b(mainnet[a-zA-Z0-9]{32})\b'  #possible blockfrost-mainnet-api
+          - '\b(testnet[a-zA-Z0-9]{32})\b'  #possible blockfrost-testnet-api
+          - '\b(ipfs[a-zA-Z0-9]{32})\b'  #possible blockfrost-ipfs-api
+          - '\b([a-zA-Z0-9]{50})\b'  #possible bravenewcoin-api
+          - '\b(sl.[a-zA-Z0-9-_]{136})\b' #dropbox-api
