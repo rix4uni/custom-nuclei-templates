@@ -21,6 +21,7 @@ requests:
           - '\b((?:ghu|ghs)_[a-zA-Z0-9]{36})\b' #github-app
           - '\b(gho_[a-zA-Z0-9]{36})\b' #github-oauth-access
           - '\b(ghr_[a-zA-Z0-9]{76})\b' #github-refresh
+          - ' [A-Za-z0-9_]{255}' #github-OAuth-2.0-ID
           - '(?i)\b(p8e-[a-z0-9-]{32})(?:[^a-z0-9-]|$)' #adobe-oauth-secret
           - '\bage1[0-9a-z]{58}\b'  #age-public-key
           - '\bAGE-SECRET-KEY-1[0-9A-Z]{58}\b'  #age-secret-key
@@ -45,8 +46,10 @@ requests:
           - '\b(glpat-[0-9a-zA-Z_-]{20})(?:\b|$)' #gitlab-personal-token
           - '\b(glptt-[0-9a-f]{40})\b'  #gitlab-pipeline-token
           - 'ya29\.[0-9A-Za-z\-_]+' #google-oauth-access-key
+          - '[0-9a-zA-Z\-_]{24}' #google-OAuth-2.0-Secret
           - "AAAA[a-zA-Z0-9_-]{7}:[a-zA-Z0-9_-]{140}" #fcm-server-key
           - "AIza[0-9A-Za-z\\-_]{35}" #google-api-key
+          - '1/[0-9A-Za-z\-_]{43}|1/[0-9A-Za-z\-_]{64}' #google-OAuth-2.0-Refresh-Token
           - 'https://www\.google\.com/calendar/embed\?src=[A-Za-z0-9%@&;=\-_\./]+'  #google-calendar-link
           - '(?i)\b([0-9]+-[a-z0-9_]{32})\.apps\.googleusercontent\.com'  #google-client-id
           - '(GOCSPX-[a-zA-Z0-9_-]{28})'  #google-oauth-prefixed
@@ -110,3 +113,150 @@ requests:
           - '\b(ipfs[a-zA-Z0-9]{32})\b'  #possible blockfrost-ipfs-api
           - '\b([a-zA-Z0-9]{50})\b'  #possible bravenewcoin-api
           - '\b(sl.[a-zA-Z0-9-_]{136})\b' #dropbox-api
+          - '[1-9][ 0-9]+-[0-9a-zA-Z]{40}'  #twitter-access-token
+          - '/(^|[^@\w])@(\w{1,15})\b/'  #twitter-username
+          - '[A-Za-z0-9]{125} (counting letters [2])' #facebook-OAuth-2.0
+          - '[0-9a-fA-F]{7}\.[0-9a-fA-F]{32}' #instagram-OAuth-2.0
+          - '(?:@)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)' #instagram-username
+          - '[0-9a-zA-Z_][5,31]'  #Foursquare-Client-Key
+          - 'R_[0-9a-f]{32}'  #Foursquare-Secret-Key
+          - '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' #Google-Cloud-Platform-OAuth-2.0
+          - '[A-Za-z0-9_]{21}--[A-Za-z0-9_]{8}' #Google-Cloud-Platform-API-Key
+          - 'virustotal[_-]?apikey(=| =|:| :)'
+          - "TOKEN[\\-|_|A-Z0-9]*(\'|\")?(:|=)(\'|\")?[\\-|_|A-Z0-9]{10}"
+          - 'token=[0-9A-Za-z\\-]{5,100}'
+          - '[0-9a-f]{32}-us[0-9]{1,2}'
+          - '(ftp|ftps|http|https)://[A-Za-z0-9-_:\.~]+(@)'
+          - '(API|api)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{10}'
+          - '(token|TOKEN)(:|=| : | = )("|')[ 0-9A-Za-z\\-]{10}'
+          - '(SECRET|secret)(:|=| : | = )("|')[0-9A-Za-z\\-]{10}'
+          - '(key|KEY)(:|=)[0-9A-Za-z\\-]{10}'
+          - 'secret[_-]?0(=| =|:| :)'
+          - '(password|PASSWORD)(:|=| : | = )("|')[0-9A-Za-z\\-]{10}'
+          - '[0-9(+-[0-9A-Za-z_]{32}.apps.qooqleusercontent.com'
+          - 'key-[0-9a-zA-Z]{32}'
+          - 'basic [a-zA-Z0-9]'
+          - 'bearer [a-zA-Z0-9]'
+          - "[f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K].*['|\"][0-9a-f]{32}['|\"]"
+          - 'ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$'
+          - '\"api_token\":\"(xox[a-zA-Z]-[a-zA-Z0-9-]+)\"'
+          - '([-]+BEGIN [^\s]+ PRIVATE KEY[-]+[\s]*[^-]*[-]+END [^\s]+ PRIVATE KEY[-]+)'
+          - '(JEKYLL_GITHUB_TOKEN|JEKYLL_GITHUB_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(SF_USERNAMEsalesforce|SF_USERNAMESALESFORCE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(access_key|ACCESS_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(access_token|ACCESS_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(apiSecret|APISECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(api_key|API_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(api_secret|API_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(apidocs|APIDOCS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(apikey|APIKEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(app_key|APP_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(app_secret|APP_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(appkey|APPKEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(appkeysecret|APPKEYSECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(application_key|APPLICATION_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(appsecret|APPSECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(appspot|APPSPOT)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(auth|AUTH)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(auth_token|AUTH_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(authorizationToken|AUTHORIZATIONTOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(aws_access|AWS_ACCESS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(aws_access_key_id|AWS_ACCESS_KEY_ID)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(aws_key|AWS_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(aws_secret|AWS_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]7}'
+          - '(aws_token|AWS_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(bashrcpassword|BASHRCPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(bucket_password|BUCKET_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(client_secret|CLIENT_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(cloudfront|CLOUDFRONT)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(codecov_token|CODECOV_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(config|CONFIG)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(conn.login|CONN.LOGIN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(connectionstring|CONNECTIONSTRING)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(consumer_key|CONSUMER_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(credentials|CREDENTIALS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(database_password|DATABASE_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(db_password|DB_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(db_username|DB_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(dbpasswd|DBPASSWD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(dbpassword|DBPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(dbuser|DBUSER)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{3}'
+          - '(dot-files|DOT-FILES)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(dotfiles|DOTFILES)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(encryption_key|ENCRYPTION_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(fabricApiSecret|FABRICAPISECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(fb_secret|FB_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(firebase|FIREBASE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(ftp|FTP)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(gh_token|GH_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(github_key|GITHUB_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(github_token|GITHUB_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(gitlab|GITLAB)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(gmail_password|GMAIL_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(gmail_username|GMAIL_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(api.googlemapsAIza|API.GOOGLEMAPSAIZA)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(herokuapp|HEROKUAPP)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(internal|INTERNAL)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(irc_pass|IRC_PASS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(key|KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(keyPassword|KEYPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(ldap_password|LDAP_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(ldap_username|LDAP_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(login|LOGIN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(mailchimp|MAILCHIMP)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(mailgun|MAILGUN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(master_key|MASTER_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(mydotfiles|MYDOTFILES)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(mysql|MYSQL)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(node_env|NODE_ENV)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(npmrc_auth|NPMRC_AUTH)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(oauth_token|OAUTH_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(pass|PASS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(passwd|PASSWD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(password|PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(passwords|PASSWORDS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(pemprivate|PEMPRIVATE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(preprod|PREPROD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(private_key|PRIVATE_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(prod|PROD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(pwd|PWD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(pwds|PWDS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(rds.amazonaws.compassword|RDS.AMAZONAWS.COMPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(redis_password|REDIS_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(root_password|ROOT_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(secret|SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(secret.password|SECRET.PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(secret_access_key|SECRET_ACCESS_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(secret_key|SECRET_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(secret_token|SECRET_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(secrets|SECRETS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(secure|SECURE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(security_credentials|SECURITY_CREDENTIALS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(send.keys|SEND.KEYS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(send_keys|SEND_KEYS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(sf_username|SF_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(slack_api|SLACK_API)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(slack_token|SLACK_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(sql_password|SQL_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(ssh|SSH)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(ssh2_auth_password|SSH2_AUTH_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(sshpass|SSHPASS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(staging|STAGING)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(stg|STG)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(storePassword|STOREPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(stripe|STRIPE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(swagger|SWAGGER)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - '(testuser|TESTUSER)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
+          - 'basic [a-zA-Z0-9_\\-:\\.=]+'
+          - 'bearer [a-zA-Z0-9_\\-\\.=]+"'
+          - '(https?://)[a-zA-Z0-9]+:[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z]+'
+          - '(eyJ|YTo|Tzo|PD[89]|aHR0cHM6L|aHR0cDo|rO0)[a-zA-Z0-9+/]+={0,2}'
+          - 'cloudinary://[0-9]{15}:[0-9A-Za-z]+@[a-z]+'
+          - '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}'  #ipv4
+          - '(\\\\?\"|&quot;|%22)[a-z0-9_-]*(api[_-]?key|S3|aws_|secret|passw|auth)[a-z0-9_-]*(\\\\?\"|&quot;|%22): ?(\\\\?\"|&quot;|%22)[^\"&]+(\\\\?\"|&quot;|%22)' #json sec
+          - '[a-f0-9]{32}'  #md5
+          - '[a-z0-9.-]+\\.s3\\.amazonaws\\.com'
+          - '[a-z0-9.-]+\\.s3-[a-z0-9-]\\.amazonaws\\.com'
+          - '[a-z0-9.-]+\\.s3-website[.-](eu|ap|us|ca|sa|cn)'
+          - '//s3\\.amazonaws\\.com/[a-z0-9._-]+'
+          - '//s3-[a-z0-9-]+\\.amazonaws\\.com/[a-z0-9._-]+'
