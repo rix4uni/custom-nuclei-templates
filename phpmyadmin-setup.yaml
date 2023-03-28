@@ -12,7 +12,7 @@ info:
   reference: https://hackerone.com/reports/297339
   metadata:
     google-query: inurl:"phpMyAdmin/setup/index.php"
-    shodan-query: http.html:"phpMyAdmin"
+    shodan-query: http.title:"phpMyAdmin"
   tags: phpmyadmin,authetication,misconfig
 
 requests:
