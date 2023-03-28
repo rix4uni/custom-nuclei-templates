@@ -15,248 +15,527 @@ requests:
 
     extractors:
       - type: regex
+        name: github-personal-access
         part: body
         regex:
-          - '\b(ghp_[a-zA-Z0-9]{36})\b' #github-personal-access
-          - '\b((?:ghu|ghs)_[a-zA-Z0-9]{36})\b' #github-app
-          - '\b(gho_[a-zA-Z0-9]{36})\b' #github-oauth-access
-          - '\b(ghr_[a-zA-Z0-9]{76})\b' #github-refresh
-          - ' [A-Za-z0-9_]{255}' #github-OAuth-2.0-ID
-          - '(?i)\b(p8e-[a-z0-9-]{32})(?:[^a-z0-9-]|$)' #adobe-oauth-secret
-          - '\bage1[0-9a-z]{58}\b'  #age-public-key
-          - '\bAGE-SECRET-KEY-1[0-9A-Z]{58}\b'  #age-secret-key
-          - "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}" #amazon-mws-auth-token
-          - 'arn:aws:sns:[a-z0-9\-]+:[0-9]+:[A-Za-z0-9\-_]+'  #amazon-sns-topic
-          - "(A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"  #aws-access-key-value
-          - '(?i)aws_?(?:account)_?(?:id)?["''`]?\s{0,30}(?::|=>|=)\s{0,30}["''`]?([0-9]{4}-?[0-9]{4}-?[0-9]{4})' #aws-account-id
-          - '\b((?:A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16})\b' #aws-api-key
-          - '(?i)(?:aws.?session|aws.?session.?token|aws.?token)["''`]?\s{0,30}(?::|=>|=)\s{0,30}["''`]?([a-z0-9/+=]{16,200})[^a-z0-9/+=]'  #aws-session-token
-          - '(?:\s|=|:|"|^)AP[\dABCDEF][a-zA-Z0-9]{8,}' #artifactory-api-password
-          - '(?:\s|=|:|"|^)AKC[a-zA-Z0-9]{10,}' #artifactory-api-token
-          - 'R_[0-9a-f]{32}'  #bitly-secret-key
-          - 'cloudinary://[0-9]+:[A-Za-z0-9\-_\.]+@[A-Za-z0-9\-_\.]+' #cloudinary-credentials
-          - '(?i)codeclima.{0,50}\b([a-f0-9]{64})\b'  #codeclimate-token
-          - '\bcio[a-zA-Z0-9]{32}\b'  #crates-api-key
-          - 'https://discordapp\.com/api/webhooks/[0-9]+/[A-Za-z0-9\-]+'  #discord-webhook
-          - '\b(dt0[a-zA-Z]{1}[0-9]{2}\.[A-Z0-9]{24}\.[A-Z0-9]{64})\b'  #dynatrace-api-token
-          - '\b(EAACEdEose0cBA[a-zA-Z0-9]+)\b'  #facebook-access-token
-          - 'jdbc:[a-z:]+://[A-Za-z0-9\.\-_:;=/@?,&]+'  #jdbc-connection-string
-          - 'eyJ[a-zA-Z0-9]{10,}\.eyJ[a-zA-Z0-9]{10,}\.[a-zA-Z0-9_\-]{10,}' #jwt-token
-          - '\b(GR1348941[0-9a-zA-Z_-]{20})(?:\b|$)'  #gitlab-runner-token
-          - '\b(glpat-[0-9a-zA-Z_-]{20})(?:\b|$)' #gitlab-personal-token
-          - '\b(glptt-[0-9a-f]{40})\b'  #gitlab-pipeline-token
-          - 'ya29\.[0-9A-Za-z\-_]+' #google-oauth-access-key
-          - '[0-9a-zA-Z\-_]{24}' #google-OAuth-2.0-Secret
-          - "AAAA[a-zA-Z0-9_-]{7}:[a-zA-Z0-9_-]{140}" #fcm-server-key
-          - "AIza[0-9A-Za-z\\-_]{35}" #google-api-key
-          - '1/[0-9A-Za-z\-_]{43}|1/[0-9A-Za-z\-_]{64}' #google-OAuth-2.0-Refresh-Token
-          - 'https://www\.google\.com/calendar/embed\?src=[A-Za-z0-9%@&;=\-_\./]+'  #google-calendar-link
-          - '(?i)\b([0-9]+-[a-z0-9_]{32})\.apps\.googleusercontent\.com'  #google-client-id
-          - '(GOCSPX-[a-zA-Z0-9_-]{28})'  #google-oauth-prefixed
-          - '(?i)heroku.{0,20}key.{0,20}\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b' #heroku-api-key
-          - '(?i)jenkins.{0,10}(?:crumb)?.{0,10}\b([0-9a-f]{32,36})\b'  #jenkins-crumb-token
-          - "[A-Z]{2}[0-9]{2}-[A-Z]{2}[0-9]{2}-[A-Z]{2}[0-9]{2}-[A-Z]{2}[0-9]{2}" #loqate-api-key
-          - "[0-9a-f]{32}-us[0-9]{1,2}" #mailchimp-access-key-value
-          - '(?i)(?:mailgun|mg).{0,20}key-([a-z0-9]{32})\b' #mailgun-api-token
-          - 'sk\.eyJ1Ijoi\w+\.[\w-]*' #mapbox-token-disclosure
-          - 'https://outlook\.office\.com/webhook/[A-Za-z0-9\-@]+/IncomingWebhook/[A-Za-z0-9\-]+/[A-Za-z0-9\-]+'  #microsoft-teams-webhook
-          - '(?i)NRSP-[a-z]{2}[0-9]{2}[a-f0-9]{31}' #newrelic-synthetics-location-key
-          - '(?i)NRAA-[a-f0-9]{27}' #newrelic-admin-api-key
-          - '(?i)NRI(?:I|Q)-[A-Za-z0-9\-_]{32}' #newrelic-insights-key
-          - "(px-api-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})" #newrelic-pixie-api-key
-          - "(px-dep-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})" #newrelic-pixie-deploy-key
-          - '(?i)NRRA-[a-f0-9]{42}' #newrelic-rest-api-key
-          - "(npm_[A-Za-z0-9]{36})" #npm-access-token
-          - "(oy2[a-z0-9]{43})" #nuget-api-key
-          - "(sk-[a-zA-Z0-9]{48})"  #openai-api-key
-          - 'access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}'  #braintree-access-token
-          - 'sk_live_[0-9a-z]{32}'  #picatic-api-key
-          - "(pypi-AgEIcHlwaS5vcmc[a-zA-Z0-9_-]{50,})"  #pypi-upload-token
-          - "rzp_(live|test)_.{14}" #razorpay-clientid-disclosure
-          - "(rubygems_[a-f0-9]{48})" #rubygems-api-key
-          - '(?i)sauce.{0,50}\b([a-f0-9-]{36})\b' #sauce-token
-          - '(sgp_[a-zA-Z0-9]{64})' #segment-public-token
-          - 'SG\.[a-zA-Z0-9-_]{22}\.[a-zA-Z0-9_-]{43}'  #sendgrid-api-key
-          - '\b(shpat_[a-fA-F0-9]{32})\b' #shopify-public-token
-          - '\b(shpss_[a-fA-F0-9]{32})\b' #shopify-app-secret
-          - '\b(shpca_[a-fA-F0-9]{32})\b' #shopify-customapp-token
-          - '\b(shppa_[a-fA-F0-9]{32})\b' #shopify-legacy-token
-          - "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}" #slack-webhook-token
-          - "xoxb-[0-9A-Za-z\\-]{51}" #slack-bot-token
-          - "xoxp-[0-9A-Za-z\\-]{72}" #slack-user-token
-          - "sonar.{0,50}(?:\"|'|`)?[0-9a-f]{40}(?:\"|'|`)?"  #sonarqube-token
-          - '(?i)\b(sq0csp-[a-z0-9_-]{43})\b' #square-oauth-secret-token
-          - '(?i)\b(sq0atp-[a-z0-9_-]{22})\b' #square-access
-          - '\b(hawk\.[0-9A-Za-z_-]{20}\.[0-9A-Za-z_-]{20})\b'  #stackhawk-api
-          - 'sk_(?:live|test)_[0-9a-zA-Z]{24}'  #stripe-secret-key
-          - 'rk_(?:live|test)_[0-9a-zA-Z]{24}'  #stripe-restricted-key
-          - '\b(\d+:AA[a-zA-Z0-9_-]{32,33})'  #telegram-bot-token
-          - '(?i)twilio.{0,20}\b(sk[a-f0-9]{32})\b' #twilio-api-key
-          - 'https://(?:www.)?hooks\.zapier\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/'  #zapier-webhook-token
-          - 'https://creator\.zoho\.com/api/[A-Za-z0-9/\-_\.]+\?authtoken=[A-Za-z0-9]+' #zoho-webhook-token
-          - '\b(sk[a-zA-Z0-9]{178})\b'  #sanity_api_token
-          - '\b([a-zA-Z0-9]{32})\b' #possible algolia-api-key,trello_api,1forge-api-key,abstractapi
-          - '\b([a-zA-Z0-9]{40})\b' #possible xsolla-api-key
-          - '\b(skey_test_[a-zA-Z0-9]{19})\b' #omise-secret-key
-          - '\b([a-zA-Z0-9]{64})\b' #possible trello_token,alienvault-api,binance-api
-          - '\b([a-zA-Z0-9]{80})\b' #possible abuseipdb-api
-          - '\b([a-zA-Z0-9]{33})\b' #possible adoptapet-api
-          - '\b([a-zA-Z0-9]{14})\b' #possible airtable-api
-          - '\b([a-zA-Z0-9]{30})\b' #possible amdoren-api
-          - '\b([a-zA-Z0-9]{43})\b' #possible bitcoinaverage-api
-          - '\b([a-zA-Z0-9]{86})\b' #possible bitrise-api
-          - '\b([a-zA-Z0-9-_.~]{35,48})\b'  #possible blitapp-api
-          - '\b([a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4})\b' #possible block.io-api
-          - '\b([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[0-9a-f]{12})\b'  #possible api.blockchain.com-api
-          - '\b(mainnet[a-zA-Z0-9]{32})\b'  #possible blockfrost-mainnet-api
-          - '\b(testnet[a-zA-Z0-9]{32})\b'  #possible blockfrost-testnet-api
-          - '\b(ipfs[a-zA-Z0-9]{32})\b'  #possible blockfrost-ipfs-api
-          - '\b([a-zA-Z0-9]{50})\b'  #possible bravenewcoin-api
-          - '\b(sl.[a-zA-Z0-9-_]{136})\b' #dropbox-api
-          - '[1-9][ 0-9]+-[0-9a-zA-Z]{40}'  #twitter-access-token
-          - '/(^|[^@\w])@(\w{1,15})\b/'  #twitter-username
-          - '[A-Za-z0-9]{125} (counting letters [2])' #facebook-OAuth-2.0
-          - '[0-9a-fA-F]{7}\.[0-9a-fA-F]{32}' #instagram-OAuth-2.0
-          - '(?:@)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)' #instagram-username
-          - '[0-9a-zA-Z_][5,31]'  #Foursquare-Client-Key
-          - 'R_[0-9a-f]{32}'  #Foursquare-Secret-Key
-          - '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' #Google-Cloud-Platform-OAuth-2.0
-          - '[A-Za-z0-9_]{21}--[A-Za-z0-9_]{8}' #Google-Cloud-Platform-API-Key
-          - 'virustotal[_-]?apikey(=| =|:| :)'
-          - "TOKEN[\\-|_|A-Z0-9]*(\'|\")?(:|=)(\'|\")?[\\-|_|A-Z0-9]{10}"
-          - 'token=[0-9A-Za-z\\-]{5,100}'
-          - '[0-9a-f]{32}-us[0-9]{1,2}'
-          - '(ftp|ftps|http|https)://[A-Za-z0-9-_:\.~]+(@)'
-          - '(API|api)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{10}'
-          - '(token|TOKEN)(:|=| : | = )("|')[ 0-9A-Za-z\\-]{10}'
-          - '(SECRET|secret)(:|=| : | = )("|')[0-9A-Za-z\\-]{10}'
-          - '(key|KEY)(:|=)[0-9A-Za-z\\-]{10}'
-          - 'secret[_-]?0(=| =|:| :)'
-          - '(password|PASSWORD)(:|=| : | = )("|')[0-9A-Za-z\\-]{10}'
-          - '[0-9(+-[0-9A-Za-z_]{32}.apps.qooqleusercontent.com'
-          - 'key-[0-9a-zA-Z]{32}'
-          - 'basic [a-zA-Z0-9]'
-          - 'bearer [a-zA-Z0-9]'
-          - "[f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K].*['|\"][0-9a-f]{32}['|\"]"
-          - 'ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$'
-          - '\"api_token\":\"(xox[a-zA-Z]-[a-zA-Z0-9-]+)\"'
-          - '([-]+BEGIN [^\s]+ PRIVATE KEY[-]+[\s]*[^-]*[-]+END [^\s]+ PRIVATE KEY[-]+)'
-          - '(JEKYLL_GITHUB_TOKEN|JEKYLL_GITHUB_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(SF_USERNAMEsalesforce|SF_USERNAMESALESFORCE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(access_key|ACCESS_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(access_token|ACCESS_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(apiSecret|APISECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(api_key|API_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(api_secret|API_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(apidocs|APIDOCS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(apikey|APIKEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(app_key|APP_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(app_secret|APP_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(appkey|APPKEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(appkeysecret|APPKEYSECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(application_key|APPLICATION_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(appsecret|APPSECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(appspot|APPSPOT)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(auth|AUTH)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(auth_token|AUTH_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(authorizationToken|AUTHORIZATIONTOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(aws_access|AWS_ACCESS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(aws_access_key_id|AWS_ACCESS_KEY_ID)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(aws_key|AWS_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(aws_secret|AWS_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]7}'
-          - '(aws_token|AWS_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(bashrcpassword|BASHRCPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(bucket_password|BUCKET_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(client_secret|CLIENT_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(cloudfront|CLOUDFRONT)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(codecov_token|CODECOV_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(config|CONFIG)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(conn.login|CONN.LOGIN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(connectionstring|CONNECTIONSTRING)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(consumer_key|CONSUMER_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(credentials|CREDENTIALS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(database_password|DATABASE_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(db_password|DB_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(db_username|DB_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(dbpasswd|DBPASSWD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(dbpassword|DBPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(dbuser|DBUSER)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{3}'
-          - '(dot-files|DOT-FILES)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(dotfiles|DOTFILES)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(encryption_key|ENCRYPTION_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(fabricApiSecret|FABRICAPISECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(fb_secret|FB_SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(firebase|FIREBASE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(ftp|FTP)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(gh_token|GH_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(github_key|GITHUB_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(github_token|GITHUB_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(gitlab|GITLAB)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(gmail_password|GMAIL_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(gmail_username|GMAIL_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(api.googlemapsAIza|API.GOOGLEMAPSAIZA)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(herokuapp|HEROKUAPP)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(internal|INTERNAL)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(irc_pass|IRC_PASS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(key|KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(keyPassword|KEYPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(ldap_password|LDAP_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(ldap_username|LDAP_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(login|LOGIN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(mailchimp|MAILCHIMP)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(mailgun|MAILGUN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(master_key|MASTER_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(mydotfiles|MYDOTFILES)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(mysql|MYSQL)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(node_env|NODE_ENV)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(npmrc_auth|NPMRC_AUTH)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(oauth_token|OAUTH_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(pass|PASS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(passwd|PASSWD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(password|PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(passwords|PASSWORDS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(pemprivate|PEMPRIVATE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(preprod|PREPROD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(private_key|PRIVATE_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(prod|PROD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(pwd|PWD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(pwds|PWDS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(rds.amazonaws.compassword|RDS.AMAZONAWS.COMPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(redis_password|REDIS_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(root_password|ROOT_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(secret|SECRET)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(secret.password|SECRET.PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(secret_access_key|SECRET_ACCESS_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(secret_key|SECRET_KEY)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(secret_token|SECRET_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(secrets|SECRETS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(secure|SECURE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(security_credentials|SECURITY_CREDENTIALS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(send.keys|SEND.KEYS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(send_keys|SEND_KEYS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(sf_username|SF_USERNAME)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(slack_api|SLACK_API)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(slack_token|SLACK_TOKEN)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(sql_password|SQL_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(ssh|SSH)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(ssh2_auth_password|SSH2_AUTH_PASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(sshpass|SSHPASS)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(staging|STAGING)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(stg|STG)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(storePassword|STOREPASSWORD)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(stripe|STRIPE)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(swagger|SWAGGER)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - '(testuser|TESTUSER)(:|=| : | = )( |"|')[0-9A-Za-z\\-]{5,100}'
-          - 'basic [a-zA-Z0-9_\\-:\\.=]+'
-          - 'bearer [a-zA-Z0-9_\\-\\.=]+"'
-          - '(https?://)[a-zA-Z0-9]+:[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z]+'
-          - '(eyJ|YTo|Tzo|PD[89]|aHR0cHM6L|aHR0cDo|rO0)[a-zA-Z0-9+/]+={0,2}'
-          - 'cloudinary://[0-9]{15}:[0-9A-Za-z]+@[a-z]+'
-          - '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}'  #ipv4
-          - '(\\\\?\"|&quot;|%22)[a-z0-9_-]*(api[_-]?key|S3|aws_|secret|passw|auth)[a-z0-9_-]*(\\\\?\"|&quot;|%22): ?(\\\\?\"|&quot;|%22)[^\"&]+(\\\\?\"|&quot;|%22)' #json sec
-          - '[a-f0-9]{32}'  #md5
-          - '[a-z0-9.-]+\\.s3\\.amazonaws\\.com'
-          - '[a-z0-9.-]+\\.s3-[a-z0-9-]\\.amazonaws\\.com'
-          - '[a-z0-9.-]+\\.s3-website[.-](eu|ap|us|ca|sa|cn)'
-          - '//s3\\.amazonaws\\.com/[a-z0-9._-]+'
-          - '//s3-[a-z0-9-]+\\.amazonaws\\.com/[a-z0-9._-]+'
+          - '\b(ghp_[a-zA-Z0-9]{36})\b'
+      - type: regex
+        name: github-app
+        part: body
+        regex:
+          - '\b((?:ghu|ghs)_[a-zA-Z0-9]{36})\b'
+      - type: regex
+        name: github-oauth-access
+        part: body
+        regex:
+          - '\b(gho_[a-zA-Z0-9]{36})\b'
+      - type: regex
+        name: github-refresh
+        part: body
+        regex:
+          - '\b(ghr_[a-zA-Z0-9]{76})\b'
+      - type: regex
+        name: github-OAuth-2.0-ID
+        part: body
+        regex:
+          - '[A-Za-z0-9_]{255}'
+      - type: regex
+        name: adobe-oauth-secret
+        part: body
+        regex:
+          - '(?i)\b(p8e-[a-z0-9-]{32})(?:[^a-z0-9-]|$)'
+      - type: regex
+        name: age-public-key
+        part: body
+        regex:
+          - '\bage1[0-9a-z]{58}\b'
+      - type: regex
+        name: age-secret-key
+        part: body
+        regex:
+          - '\bAGE-SECRET-KEY-1[0-9A-Z]{58}\b'
+      - type: regex
+        name: amazon-mws-auth-token
+        part: body
+        regex:
+          - "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      - type: regex
+        name: amazon-sns-topic
+        part: body
+        regex:
+          - 'arn:aws:sns:[a-z0-9\-]+:[0-9]+:[A-Za-z0-9\-_]+'
+      - type: regex
+        name: aws-access-key-value
+        part: body
+        regex:
+          - "(A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"
+      - type: regex
+        name: aws-account-id
+        part: body
+        regex:
+          - '(?i)aws_?(?:account)_?(?:id)?["''`]?\s{0,30}(?::|=>|=)\s{0,30}["''`]?([0-9]{4}-?[0-9]{4}-?[0-9]{4})'
+      - type: regex
+        name: aws-api-key
+        part: body
+        regex:
+          - '\b((?:A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16})\b'
+      - type: regex
+        name: aws-session-token
+        part: body
+        regex:
+          - '(?i)(?:aws.?session|aws.?session.?token|aws.?token)["''`]?\s{0,30}(?::|=>|=)\s{0,30}["''`]?([a-z0-9/+=]{16,200})[^a-z0-9/+=]'
+      - type: regex
+        name: artifactory-api-password
+        part: body
+        regex:
+          - '(?:\s|=|:|"|^)AP[\dABCDEF][a-zA-Z0-9]{8,}'
+      - type: regex
+        name: artifactory-api-token
+        part: body
+        regex:
+          - '(?:\s|=|:|"|^)AKC[a-zA-Z0-9]{10,}'
+      - type: regex
+        name: bitly-secret-key
+        part: body
+        regex:
+          - 'R_[0-9a-f]{32}'
+      - type: regex
+        name: cloudinary-credentials
+        part: body
+        regex:
+          - 'cloudinary://[0-9]+:[A-Za-z0-9\-_\.]+@[A-Za-z0-9\-_\.]+'
+      - type: regex
+        name: codeclimate-token
+        part: body
+        regex:
+          - '(?i)codeclima.{0,50}\b([a-f0-9]{64})\b'
+      - type: regex
+        name: crates-api-key
+        part: body
+        regex:
+          - '\bcio[a-zA-Z0-9]{32}\b'
+      - type: regex
+        name: discord-webhook
+        part: body
+        regex:
+          - 'https://discordapp\.com/api/webhooks/[0-9]+/[A-Za-z0-9\-]+'
+      - type: regex
+        name: dynatrace-api-token
+        part: body
+        regex:
+          - '\b(dt0[a-zA-Z]{1}[0-9]{2}\.[A-Z0-9]{24}\.[A-Z0-9]{64})\b'
+      - type: regex
+        name: facebook-access-token
+        part: body
+        regex:
+          - '\b(EAACEdEose0cBA[a-zA-Z0-9]+)\b'
+      - type: regex
+        name: jdbc-connection-string
+        part: body
+        regex:
+          - 'jdbc:[a-z:]+://[A-Za-z0-9\.\-_:;=/@?,&]+'
+      - type: regex
+        name: jwt-token
+        part: body
+        regex:
+          - 'eyJ[a-zA-Z0-9]{10,}\.eyJ[a-zA-Z0-9]{10,}\.[a-zA-Z0-9_\-]{10,}'
+      - type: regex
+        name: gitlab-runner-token
+        part: body
+        regex:
+          - '\b(GR1348941[0-9a-zA-Z_-]{20})(?:\b|$)'
+      - type: regex
+        name: gitlab-personal-token
+        part: body
+        regex:
+          - '\b(glpat-[0-9a-zA-Z_-]{20})(?:\b|$)'
+      - type: regex
+        name: gitlab-pipeline-token
+        part: body
+        regex:
+          - '\b(glptt-[0-9a-f]{40})\b'
+      - type: regex
+        name: google-oauth-access-key
+        part: body
+        regex:
+          - 'ya29\.[0-9A-Za-z\-_]+'
+      - type: regex
+        name: google-OAuth-2.0-Secret
+        part: body
+        regex:
+          - '[0-9a-zA-Z\-_]{24}'
+      - type: regex
+        name: fcm-server-key
+        part: body
+        regex:
+          - "AAAA[a-zA-Z0-9_-]{7}:[a-zA-Z0-9_-]{140}"
+      - type: regex
+        name: google-api-key
+        part: body
+        regex:
+          - "AIza[0-9A-Za-z\\-_]{35}"
+      - type: regex
+        name: google-OAuth-2.0-Refresh-Token
+        part: body
+        regex:
+          - '1/[0-9A-Za-z\-_]{43}|1/[0-9A-Za-z\-_]{64}'
+      - type: regex
+        name: google-calendar-link
+        part: body
+        regex:
+          - 'https://www\.google\.com/calendar/embed\?src=[A-Za-z0-9%@&;=\-_\./]+'
+      - type: regex
+        name: google-client-id
+        part: body
+        regex:
+          - '(?i)\b([0-9]+-[a-z0-9_]{32})\.apps\.googleusercontent\.com'
+      - type: regex
+        name: google-oauth-prefixed
+        part: body
+        regex:
+          - '(GOCSPX-[a-zA-Z0-9_-]{28})'
+      - type: regex
+        name: heroku-api-key
+        part: body
+        regex:
+          - '(?i)heroku.{0,20}key.{0,20}\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b'
+      - type: regex
+        name: jenkins-crumb-token
+        part: body
+        regex:
+          - '(?i)jenkins.{0,10}(?:crumb)?.{0,10}\b([0-9a-f]{32,36})\b'
+      - type: regex
+        name: loqate-api-key
+        part: body
+        regex:
+          - "[A-Z]{2}[0-9]{2}-[A-Z]{2}[0-9]{2}-[A-Z]{2}[0-9]{2}-[A-Z]{2}[0-9]{2}"
+      - type: regex
+        name: mailchimp-access-key-value
+        part: body
+        regex:
+          - "[0-9a-f]{32}-us[0-9]{1,2}"
+      - type: regex
+        name: mailgun-api-token
+        part: body
+        regex:
+          - '(?i)(?:mailgun|mg).{0,20}key-([a-z0-9]{32})\b'
+      - type: regex
+        name: mapbox-token-disclosure
+        part: body
+        regex:
+          - 'sk\.eyJ1Ijoi\w+\.[\w-]*'
+      - type: regex
+        name: microsoft-teams-webhook
+        part: body
+        regex:
+          - 'https://outlook\.office\.com/webhook/[A-Za-z0-9\-@]+/IncomingWebhook/[A-Za-z0-9\-]+/[A-Za-z0-9\-]+'
+      - type: regex
+        name: newrelic-synthetics-location-key
+        part: body
+        regex:
+          - '(?i)NRSP-[a-z]{2}[0-9]{2}[a-f0-9]{31}'
+      - type: regex
+        name: newrelic-admin-api-key
+        part: body
+        regex:
+          - '(?i)NRAA-[a-f0-9]{27}'
+      - type: regex
+        name: newrelic-insights-key
+        part: body
+        regex:
+          - '(?i)NRI(?:I|Q)-[A-Za-z0-9\-_]{32}'
+      - type: regex
+        name: newrelic-pixie-api-key
+        part: body
+        regex:
+          - "(px-api-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})"
+      - type: regex
+        name: newrelic-pixie-deploy-key
+        part: body
+        regex:
+          - "(px-dep-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})"
+      - type: regex
+        name: newrelic-rest-api-key
+        part: body
+        regex:
+          - '(?i)NRRA-[a-f0-9]{42}'
+      - type: regex
+        name: npm-access-token
+        part: body
+        regex:
+          - "(npm_[A-Za-z0-9]{36})"
+      - type: regex
+        name: nuget-api-key
+        part: body
+        regex:
+          - "(oy2[a-z0-9]{43})"
+      - type: regex
+        name: openai-api-key
+        part: body
+        regex:
+          - "(sk-[a-zA-Z0-9]{48})" 
+      - type: regex
+        name: braintree-access-token
+        part: body
+        regex:
+          - 'access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}'
+      - type: regex
+        name: picatic-api-key
+        part: body
+        regex:
+          - 'sk_live_[0-9a-z]{32}'
+      - type: regex
+        name: pypi-upload-token
+        part: body
+        regex:
+          - "(pypi-AgEIcHlwaS5vcmc[a-zA-Z0-9_-]{50,})" 
+      - type: regex
+        name: razorpay-clientid-disclosure
+        part: body
+        regex:
+          - "rzp_(live|test)_.{14}"
+      - type: regex
+        name: rubygems-api-key
+        part: body
+        regex:
+          - "(rubygems_[a-f0-9]{48})"
+      - type: regex
+        name: sauce-token
+        part: body
+        regex:
+          - '(?i)sauce.{0,50}\b([a-f0-9-]{36})\b'
+      - type: regex
+        name: segment-public-token
+        part: body
+        regex:
+          - '(sgp_[a-zA-Z0-9]{64})'
+      - type: regex
+        name: sendgrid-api-key
+        part: body
+        regex:
+          - 'SG\.[a-zA-Z0-9-_]{22}\.[a-zA-Z0-9_-]{43}'
+      - type: regex
+        name: shopify-public-token
+        part: body
+        regex:
+          - '\b(shpat_[a-fA-F0-9]{32})\b'
+      - type: regex
+        name: shopify-app-secret
+        part: body
+        regex:
+          - '\b(shpss_[a-fA-F0-9]{32})\b'
+      - type: regex
+        name: shopify-customapp-token
+        part: body
+        regex:
+          - '\b(shpca_[a-fA-F0-9]{32})\b'
+      - type: regex
+        name: shopify-legacy-token
+        part: body
+        regex:
+          - '\b(shppa_[a-fA-F0-9]{32})\b'
+      - type: regex
+        name: slack-webhook-token
+        part: body
+        regex:
+          - "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}"
+      - type: regex
+        name: slack-bot-token
+        part: body
+        regex:
+          - "xoxb-[0-9A-Za-z\\-]{51}"
+      - type: regex
+        name: slack-user-token
+        part: body
+        regex:
+          - "xoxp-[0-9A-Za-z\\-]{72}"
+      - type: regex
+        name: sonarqube-token
+        part: body
+        regex:
+          - "sonar.{0,50}(?:\"|'|`)?[0-9a-f]{40}(?:\"|'|`)?" 
+      - type: regex
+        name: square-oauth-secret-token
+        part: body
+        regex:
+          - '(?i)\b(sq0csp-[a-z0-9_-]{43})\b'
+      - type: regex
+        name: square-access
+        part: body
+        regex:
+          - '(?i)\b(sq0atp-[a-z0-9_-]{22})\b'
+      - type: regex
+        name: stackhawk-api
+        part: body
+        regex:
+          - '\b(hawk\.[0-9A-Za-z_-]{20}\.[0-9A-Za-z_-]{20})\b'
+      - type: regex
+        name: stripe-secret-key
+        part: body
+        regex:
+          - 'sk_(?:live|test)_[0-9a-zA-Z]{24}'
+      - type: regex
+        name: stripe-restricted-key
+        part: body
+        regex:
+          - 'rk_(?:live|test)_[0-9a-zA-Z]{24}'
+      - type: regex
+        name: telegram-bot-token
+        part: body
+        regex:
+          - '\b(\d+:AA[a-zA-Z0-9_-]{32,33})'
+      - type: regex
+        name: twilio-api-key
+        part: body
+        regex:
+          - '(?i)twilio.{0,20}\b(sk[a-f0-9]{32})\b'
+      - type: regex
+        name: zapier-webhook-token
+        part: body
+        regex:
+          - 'https://(?:www.)?hooks\.zapier\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/'
+      - type: regex
+        name: zoho-webhook-token
+        part: body
+        regex:
+          - 'https://creator\.zoho\.com/api/[A-Za-z0-9/\-_\.]+\?authtoken=[A-Za-z0-9]+'
+      - type: regex
+        name: sanity_api_token
+        part: body
+        regex:
+          - '\b(sk[a-zA-Z0-9]{178})\b'
+      - type: regex
+        name: possible algolia-api-key,trello_api,1forge-api-key,abstractapi
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{32})\b'
+      - type: regex
+        name: possible xsolla-api-key
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{40})\b'
+      - type: regex
+        name: omise-secret-key
+        part: body
+        regex:
+          - '\b(skey_test_[a-zA-Z0-9]{19})\b'
+      - type: regex
+        name: possible trello_token,alienvault-api,binance-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{64})\b'
+      - type: regex
+        name: possible abuseipdb-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{80})\b'
+      - type: regex
+        name: possible adoptapet-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{33})\b'
+      - type: regex
+        name: possible airtable-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{14})\b'
+      - type: regex
+        name: possible amdoren-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{30})\b'
+      - type: regex
+        name: possible bitcoinaverage-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{43})\b'
+      - type: regex
+        name: possible bitrise-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{86})\b'
+      - type: regex
+        name: possible blitapp-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9-_.~]{35,48})\b'
+      - type: regex
+        name: possible block.io-api
+        part: body
+        regex:
+          - '\b([a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4})\b'
+      - type: regex
+        name: possible api.blockchain.com-api
+        part: body
+        regex:
+          - '\b([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[0-9a-f]{12})\b'
+      - type: regex
+        name: possible blockfrost-mainnet-api
+        part: body
+        regex:
+          - '\b(mainnet[a-zA-Z0-9]{32})\b'
+      - type: regex
+        name: possible blockfrost-testnet-api
+        part: body
+        regex:
+          - '\b(testnet[a-zA-Z0-9]{32})\b'
+      - type: regex
+        name: possible blockfrost-ipfs-api
+        part: body
+        regex:
+          - '\b(ipfs[a-zA-Z0-9]{32})\b'
+      - type: regex
+        name: possible bravenewcoin-api
+        part: body
+        regex:
+          - '\b([a-zA-Z0-9]{50})\b'
+      - type: regex
+        name: dropbox-api
+        part: body
+        regex:
+          - '\b(sl.[a-zA-Z0-9-_]{136})\b'
+      - type: regex
+        name: twitter-access-token
+        part: body
+        regex:
+          - '[1-9][ 0-9]+-[0-9a-zA-Z]{40}'
+      - type: regex
+        name: twitter-username
+        part: body
+        regex:
+          - '/(^|[^@\w])@(\w{1,15})\b/'
+      - type: regex
+        name: facebook-OAuth-2.0
+        part: body
+        regex:
+          - '[A-Za-z0-9]{125} (counting letters [2])'
+      - type: regex
+        name: instagram-OAuth-2.0
+        part: body
+        regex:
+          - '[0-9a-fA-F]{7}\.[0-9a-fA-F]{32}'
+      - type: regex
+        name: instagram-username
+        part: body
+        regex:
+          - '(?:@)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)'
+      - type: regex
+        name: Foursquare-Client-Key
+        part: body
+        regex:
+          - '[0-9a-zA-Z_][5,31]'
+      - type: regex
+        name: Foursquare-Secret-Key
+        part: body
+        regex:
+          - 'R_[0-9a-f]{32}'
+      - type: regex
+        name: Google-Cloud-Platform-OAuth-2.0
+        part: body
+        regex:
+          - '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+      - type: regex
+        name: Google-Cloud-Platform-API-Key
+        part: body
+        regex:
+          - '[A-Za-z0-9_]{21}--[A-Za-z0-9_]{8}'
