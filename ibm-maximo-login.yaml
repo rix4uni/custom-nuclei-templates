@@ -1,0 +1,53 @@
+id: ibm-maximo-login
+
+info:
+  name: IBM Maximo Default Login
+  author: rix4uni
+  severity: high
+  description: IBM Maximo default admin login credentials were detected.
+  reference:
+    - https://www.ibm.com/docs/en/mam-saas/7.6.0.5?topic=product-signing-in-using-default-user-id
+    - https://twitter.com/AliKM2000/status/1619730029499523075
+  metadata:
+    verified: true
+    shodan-query:
+      - http.favicon.hash:-465775588
+      - http.favicon.hash:-399298961
+      - http.title:"Welcome to Maximo"
+  tags: maximo,panel,ibm
+
+requests:
+  - raw:
+      - |-
+        POST /maximo/ui/login HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+        Accept-Language: en-US,en;q=0.5
+        Accept-Encoding: gzip, deflate
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 104
+        Origin: {{Hostname}}
+        Connection: close
+        Referer: {{BaseURL}}
+        Cookie: JSESSIONID=0000tkiVqDSbti_mQu3-1gueZNp:-1; TJE=; TE3=
+        Upgrade-Insecure-Requests: 1
+
+        allowinsubframe=null&mobile=false&login=jsp&loginstamp=1680683555111&username=mxintadm&password=mxintadm
+
+    attack: pitchfork
+    payloads:
+      username:
+        - mxintadm
+      password:
+        - mxintadm
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "<title>Start Center</title>"  # Logged in keyword
+
+      - type: status
+        status:
+          - 200
