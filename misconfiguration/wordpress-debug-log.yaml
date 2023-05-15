@@ -1,0 +1,35 @@
+id: wp-debug-log
+
+info:
+  name: WordPress debug log
+  author: rix4uni
+  severity: low
+  reference:
+    - https://twitter.com/nihad_rekany/status/1625588220636585986
+  metadata:
+    google-query:
+      - inurl:"wp-content/debug.log"
+  tags: wordpress,log
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/wp-content/debug.log"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - octet-stream
+          - text/plain
+        part: header
+        condition: or
+
+      - type: regex
+        regex:
+          - "[[0-9]{2}-[a-zA-Z]{3}-[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} [A-Z]{3}] PHP"
+        part: body
+
+      - type: status
+        status:
+          - 200

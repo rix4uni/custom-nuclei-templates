@@ -1,0 +1,32 @@
+id: wp-sym404
+
+info:
+  name: Wordpress sym404 directory
+  author: rix4uni
+  severity: high
+  description: Searches for sensitive directories present in the sym404.
+  reference:
+    - https://twitter.com/momika233/status/1540325055280070656
+    - https://twitter.com/DuckEG97/status/1647929718258237440
+  metadata:
+    google-query:
+      - inurl:"/wp-includes/sym404/"
+      - inurl:"/sym404/"
+  tags: wordpress,listing,wp,exposure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/wp-includes/sym404/root/etc/passwd"
+      - "{{BaseURL}}/sym404/root/etc/passwd"
+
+    matchers-condition: and
+    matchers:
+      - type: regex
+        part: body
+        regex:
+          - "root:.*:0:0:"
+
+      - type: status
+        status:
+          - 200
