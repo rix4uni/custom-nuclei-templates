@@ -1,0 +1,39 @@
+id: argo-properties
+
+info:
+  name: argo Properties Exposure
+  author: rix4uni
+  severity: high
+  reference:
+    - https://twitter.com/ynsmroztas/status/1657842876406013955
+  tags: exposure,argo,properties
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/WEB-INF/classes/argo.properties"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "argo.database.host"
+          - "argo.database.name"
+          - "argo.database.user"
+          - "argo.database.password"
+          - "argo.portal.name"
+          - "argo.portal.promotionNumber"
+          - "argo.keystore"
+          - "argo.keystore.pass"
+          - "argo.tracker.path"
+          - "argo.tracker.backofficepath"
+          - "argo.temp.absolutepath"
+          - "argo.hssi.xmlrpc.url"
+          - "argo.hssi.remoteloginurl"
+          - "argo.hssi.remoteloginurl.bc"
+
+      - type: status
+        status:
+          - 200
