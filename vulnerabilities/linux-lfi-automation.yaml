@@ -1,11 +1,11 @@
-id: lfi-automation
+id: linux-lfi-automation
 
 info:
   name: LFI Vulnerability Check
   author: rix4uni
   severity: critical
   description: Checks for Local File Inclusion vulnerabilities
-  tags: lfi
+  tags: lfi,linux
 
 http:
   - method: GET

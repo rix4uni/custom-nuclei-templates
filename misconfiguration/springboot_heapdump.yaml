@@ -1,0 +1,70 @@
+id: springboot-heapdump
+
+info:
+  name: SpringBoot HeapDump
+  author: rix4uni
+  severity: critical
+  reference:
+    - https://www.linkedin.com/posts/sandeshgg_bugbountytips-bugbounty-bugbountytip-activity-7065027158947102721-F_0W/?utm_source=share&utm_medium=member_android
+    - https://twitter.com/boobooHQ/status/1658439534433169409?t=JG5B9NZaaYCXv8OgSXRynQ&s=09
+    - https://www.linkedin.com/posts/sandeshgg_bugbountytip-bugbountytips-bugbounty-activity-7064287823603892224-HpuC?utm_source=share&utm_medium=member_android
+  metadata:
+    shodan-query:
+      - http.favicon.hash:116323821
+      - http.html:"heapdump"
+  tags: springboot
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/heapdump"
+      - "{{BaseURL}}/actuator/heapdump"
+      - "{{BaseURL}}/heapdump"
+      - "{{BaseURL}}/admin/heapdump"
+      - "{{BaseURL}}/..;/admin/heapdump"
+      - "{{BaseURL}}/..;/admin/actuator/heapdump"
+      - "{{BaseURL}}//actuator/heapdump"
+      - "{{BaseURL}}/%2f/heapdump"
+      - "{{BaseURL}}/%2f/actuator/heapdump"
+      - "{{BaseURL}}/%2e/heapdump"
+      - "{{BaseURL}}/%2e/actuator/heapdump"
+      - "{{BaseURL}}/%2e%2e/heapdump"
+      - "{{BaseURL}}/%2e%2e/actuator/heapdump"
+      - "{{BaseURL}}/..;/%2e/heapdump"
+      - "{{BaseURL}}/..;/%2e/actuator/heapdump"
+      - "{{BaseURL}}/dump"
+      - "{{BaseURL}}/actuator/dump"
+      - "{{BaseURL}}/dump"
+      - "{{BaseURL}}/admin/dump"
+      - "{{BaseURL}}/..;/admin/dump"
+      - "{{BaseURL}}/..;/admin/actuator/dump"
+      - "{{BaseURL}}//actuator/dump"
+      - "{{BaseURL}}/%2f/dump"
+      - "{{BaseURL}}/%2f/actuator/dump"
+      - "{{BaseURL}}/%2e/dump"
+      - "{{BaseURL}}/%2e/actuator/dump"
+      - "{{BaseURL}}/%2e%2e/dump"
+      - "{{BaseURL}}/%2e%2e/actuator/dump"
+      - "{{BaseURL}}/..;/%2e/dump"
+      - "{{BaseURL}}/..;/%2e/actuator/dump"
+      - "{{BaseURL}}/env"
+      - "{{BaseURL}}/actuator/env"
+
+ 
+
+    stop-at-first-match: true
+    max-size: 2097152 # 2MB - Max Size to read from server response
+    matchers-condition: and
+    matchers:
+
+      - type: binary
+        part: body
+        binary:
+          - "4a4156412050524f46494c45" # "JAVA PROFILE"
+          - "4850524f46" # "HPROF"
+          - "1f8b080000000000" # Gunzip magic byte
+        condition: or
+
+      - type: status
+        status:
+          - 200

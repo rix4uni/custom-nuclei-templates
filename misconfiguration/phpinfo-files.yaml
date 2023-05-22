@@ -8,6 +8,8 @@ info:
   remediation: |
     Remove PHP Info pages from publicly accessible sites, or restrict access to authorized users only.
   severity: low
+  reference:
+    - https://hackerone.com/reports/1822665
   tags: config,exposure,phpinfo
 
 requests:
