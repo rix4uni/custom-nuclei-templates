@@ -36,6 +36,9 @@ requests:
       - "{{BaseURL}}/_profiler/phpinfo.php"
       - "{{BaseURL}}/_profiler/phpinfo"
       - "{{BaseURL}}/?phpinfo=1"
+      - "{{BaseURL}}/phpinfo.php?i=show"
+      - "{{BaseURL}}/xampp/phpinfo.php"
+      - "{{BaseURL}}/php/phpInfo.php"
 
     stop-at-first-match: true
     matchers-condition: and

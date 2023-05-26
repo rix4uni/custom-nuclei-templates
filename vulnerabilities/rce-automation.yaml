@@ -15,7 +15,7 @@ http:
     payloads:
       reflection:
         - "ipconfig"
-        - "id"
+        - "ifconfig"
 
     fuzzing:
       - part: query
@@ -29,9 +29,8 @@ http:
     matchers:
       - type: word
         words:
-          - "uid="
-          - "gid="
           - "Windows IP Configuration"
+          - "inet 127.0.0.1  netmask 255.0.0.0"
 
       - type: status
         status:
