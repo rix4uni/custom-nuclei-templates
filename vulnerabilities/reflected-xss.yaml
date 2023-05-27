@@ -32,7 +32,7 @@ http:
 
     fuzzing:
       - part: query
-        type: postfix
+        type: replace
         mode: multiple
         fuzz:
           - "{{reflection}}"
