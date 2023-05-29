@@ -1,0 +1,32 @@
+id: collibra-properties
+
+info:
+  name: collibra Properties Exposure
+  author: rix4uni
+  severity: high
+  reference:
+    - https://twitter.com/shaybt12/status/1662431219223605254
+  tags: exposure,collibra,properties
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/collibra.properties"
+      - "{{BaseURL}}/app/collibra.properties"
+      - "{{BaseURL}}/src/collibra.properties"
+      - "{{BaseURL}}application/collibra.properties"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "collibra.url="
+          - "collibra.port="
+          - "collibra.user="
+          - "collibra.password="
+
+      - type: status
+        status:
+          - 200

