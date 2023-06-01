@@ -13,7 +13,6 @@ http:
     path:
       - "{{BaseURL}}/WEB-INF/classes/argo.properties"
 
-    stop-at-first-match: true
     matchers-condition: and
     matchers:
       - type: word

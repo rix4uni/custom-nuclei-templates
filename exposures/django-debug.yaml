@@ -1,0 +1,28 @@
+id: django-debug
+
+info:
+  name: Django Debug Mode
+  author: rix4uni
+  severity: medium
+  reference:
+    - https://twitter.com/fattselimi/status/1620719712081686528
+    - https://infosecwriteups.com/how-i-was-able-to-find-django-misconfiguration-using-shodan-3929942a3940
+  tags: exposure,django,debug
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "DisallowedHost at /"
+          - "HTTP_HOST"
+          - "EMAIL_HOST_USER"
+        
+      - type: status
+        status:
+          - 400
