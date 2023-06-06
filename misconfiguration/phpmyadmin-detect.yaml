@@ -23,6 +23,7 @@ requests:
         part: body
         words:
           - "<title>phpMyAdmin</title>"
+          - "<title>phpMyAdmin </title>"
 
       - type: status
         status:
