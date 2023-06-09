@@ -1,4 +1,4 @@
-id: zip-backup-files
+id: website-backup-files
 
 info:
   name: Compressed Backup File - Detect
@@ -9,9 +9,11 @@ info:
     cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
     cvss-score: 5.3
     cwe-id: CWE-200
-  tags: exposure,backup
+  reference:
+    https://twitter.com/kingcoolvikas/status/1662805448150646784
   metadata:
     max-request: 600
+  tags: exposure,backup
 
 http:
   - method: GET
@@ -20,7 +22,9 @@ http:
 
     attack: clusterbomb
     payloads:
-      FILENAME: helpers/wordlists/backup-files.txt
+      FILENAME:
+        - "{{RDN}}"   # example.com
+        - "{{DN}}"    # example
 
       EXT:
         - "7z"
@@ -50,7 +54,7 @@ http:
         - "war"
         - "bkp.zip"
 
-    threads: 100
+    threads: 10
 
     max-size: 500  # Size in bytes - Max Size to read from server response
     matchers-condition: and

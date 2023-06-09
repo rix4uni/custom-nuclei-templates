@@ -1,4 +1,4 @@
-id: zip-backup-files
+id: wordpress-backup-files
 
 info:
   name: Compressed Backup File - Detect
@@ -9,48 +9,22 @@ info:
     cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
     cvss-score: 5.3
     cwe-id: CWE-200
-  tags: exposure,backup
+  reference:
+    https://twitter.com/0x_Akoko/status/1479271656564555776
+    https://twitter.com/kab33rrr/status/1478736986315923458
   metadata:
     max-request: 600
+  tags: exposure,backup
 
 http:
   - method: GET
     path:
-      - "{{BaseURL}}/{{FILENAME}}.{{EXT}}"
+      - "{{BaseURL}}/{{FILENAME}}"
 
-    attack: clusterbomb
     payloads:
-      FILENAME: helpers/wordlists/backup-files.txt
+      FILENAME: helpers/wordlists/wordpress-backup-files.txt
 
-      EXT:
-        - "7z"
-        - "bz2"
-        - "gz"
-        - "lz"
-        - "rar"
-        - "tar.gz"
-        - "tar.bz2"
-        - "xz"
-        - "zip"
-        - "z"
-        - "tar.z"
-        - "db"
-        - "sqlite"
-        - "sqlitedb"
-        - "sql.7z"
-        - "sql.bz2"
-        - "sql.gz"
-        - "sql.lz"
-        - "sql.rar"
-        - "sql.tar.gz"
-        - "sql.xz"
-        - "sql.zip"
-        - "sql.z"
-        - "sql.tar.z"
-        - "war"
-        - "bkp.zip"
-
-    threads: 100
+    threads: 10
 
     max-size: 500  # Size in bytes - Max Size to read from server response
     matchers-condition: and
