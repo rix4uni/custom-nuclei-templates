@@ -637,27 +637,3 @@ requests:
         part: body
         regex:
           - '[A-Za-z0-9_]{21}--[A-Za-z0-9_]{8}'
-
-      - type: regex
-        name: TOKEN
-        part: body
-        regex:
-          - '[A-Za-z0-9_]{21}--[A-Za-z0-9_]{8}'
-
-      - type: regex
-        name: Generic-API-Key
-        part: body
-        regex:
-          - "[aA][pP][iI]_?[kK][eE][yY].{0,20}['|\"][0-9a-zA-Z]{32,45}['|\"]"
-
-      - type: regex
-        name: Generic-Secret
-        part: body
-        regex:
-          - "[sS][eE][cC][rR][eE][tT].{0,20}['|\"][0-9a-zA-Z]{32,45}['|\"]"
-
-      - type: regex
-        name: Password-in-URL
-        part: body
-        regex:
-          - "[a-zA-Z]{3,10}://[^/\\s:@]{3,20}:[^/\\s:@]{3,20}@.{1,100}[\"'\\s]"
