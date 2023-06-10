@@ -1,0 +1,28 @@
+id: angular-detect
+
+info:
+  name: Angular Detect
+  author: rix4uni
+  severity: info
+  description: description
+  reference:
+    - https://
+  metadata:
+    shodan-query:
+      - http.favicon.hash:-276759139
+  tags: default-login,misconfig,angular
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/favicon.ico"
+
+    matchers-condition: and
+    matchers:
+      - type: dsl
+        dsl:
+          - "status_code==200 && (\"-1851491385\" == mmh3(base64_py(body)))"
+
+      - type: status
+        status:
+          - 200

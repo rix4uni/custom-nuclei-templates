@@ -6,8 +6,9 @@ info:
   severity: low
   description: An open redirect vulnerability was detected. An attacker can redirect a user to a malicious site and possibly obtain sensitive information, modify data, and/or execute unauthorized operations.
   reference:
-    https://tools.intigriti.io/redirector/#
-    https://medium.com/@mamunwhh/how-i-got-500-with-open-redirect-48fd80c82631
+    - https://twitter.com/alone_breecher/status/1664627999608836097
+    - https://tools.intigriti.io/redirector/#
+    - https://medium.com/@mamunwhh/how-i-got-500-with-open-redirect-48fd80c82631
   tags: redirect,open-redirect-domain
 
 requests:

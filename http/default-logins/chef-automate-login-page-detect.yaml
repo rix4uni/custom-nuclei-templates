@@ -20,3 +20,7 @@ requests:
       - type: dsl
         dsl:
           - "status_code==200 && (\"-276759139\" == mmh3(base64_py(body)))"
+
+      - type: status
+        status:
+          - 200
