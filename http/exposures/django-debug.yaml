@@ -7,6 +7,11 @@ info:
   reference:
     - https://twitter.com/fattselimi/status/1620719712081686528
     - https://infosecwriteups.com/how-i-was-able-to-find-django-misconfiguration-using-shodan-3929942a3940
+  metadata:
+    shodan-query:
+      - body="DisallowedHost at /"
+    fofa-query:
+      - http.title:"DisallowedHost at /"
   tags: exposure,django,debug
 
 http:
