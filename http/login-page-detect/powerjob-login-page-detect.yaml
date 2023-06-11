@@ -1,0 +1,31 @@
+id: powerjob-login-page-detect
+
+info:
+  name: PowerJob - Login Page Detect
+  author: rix4uni
+  severity: info
+  description: PowerJob default login credentials were discovered.
+  reference:
+    - https://www.yuque.com/powerjob/guidence/trial
+  metadata:
+    fofa-query:
+      - title="PowerJob"
+    shodan-query:
+      - http.title:"PowerJob"
+  tags: powerjob,default-login
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<title>PowerJob</title>"
+
+      - type: status
+        status:
+          - 200

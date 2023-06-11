@@ -1,7 +1,7 @@
 id: ibm-maximo-login-page-detect
 
 info:
-  name: IBM Maximo Default Login
+  name: IBM Maximo - Login Page Detect
   author: rix4uni
   severity: info
   description: IBM Maximo default admin login credentials were detected.

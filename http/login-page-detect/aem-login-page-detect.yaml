@@ -1,7 +1,7 @@
 id: aem-login-page-detect
 
 info:
-  name: Adobe AEM Login Page - Detect
+  name: Adobe AEM - Login Page Detect
   author: rix4uni
   severity: info
   description: Multiple Adobe AEM login page detected.

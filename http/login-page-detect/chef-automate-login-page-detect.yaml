@@ -1,7 +1,7 @@
 id: chef-automate-login-page-detect
 
 info:
-  name: Chef Automate Login Page - Detect
+  name: Chef Automate - Login Page Detect
   author: rix4uni
   severity: info
   description: Multiple Chef Automate login page detected.

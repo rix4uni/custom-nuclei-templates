@@ -1,0 +1,36 @@
+id: adminer-login-page-detect
+
+info:
+  name: Adminer - Login Page Detect
+  author: rix4uni
+  severity: info
+  description: Adminer contains a default login vulnerability. An attacker can obtain access to user accounts and access sensitive information, modify data, and/or execute unauthorized operations.
+  reference:
+    - https://www.adminer.org
+  metadata:
+    shodan-query:
+      - http.favicon.hash:572074752
+    fofa-query:
+      - body="Adminer</title>"
+  tags: default-login,adminer
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "Adminer</title>"
+          - "<tr><th>System<td><select name='auth[driver]'>"
+          - '<tr><th>Server<td><input name="auth[server]"'
+          - '<tr><th>Username<td><input name="auth[username]"'
+          - '<tr><th>Password<td><input type="password"'
+          - '<tr><th>Database<td><input name="auth[db]"'
+
+      - type: status
+        status:
+          - 200

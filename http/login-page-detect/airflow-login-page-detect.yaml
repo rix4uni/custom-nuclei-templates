@@ -1,7 +1,7 @@
 id: airflow-login-page-detect
 
 info:
-  name: Apache Airflow Login Panel - Detect
+  name: Apache Airflow - Login Page Detect
   author: rix4uni
   severity: info
   description: Apache Airflow login panel was detected.
