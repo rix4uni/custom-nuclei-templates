@@ -26,7 +26,22 @@ requests:
         Connection: close
         Cookie: wordpress_test_cookie=WP%20Cookie%20check
 
-        log=root&pwd=root&wp-submit=Log+In
+        log={{username}}&pwd={{password}}&wp-submit=Log+In
+
+    attack: pitchfork
+    payloads:
+      username:
+        - root
+        - admin
+        - admin
+        - demo
+        - administrator
+      password:
+        - root
+        - admin
+        - password
+        - demo
+        - administrator
 
     matchers-condition: and
     matchers:

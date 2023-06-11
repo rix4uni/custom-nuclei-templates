@@ -5,10 +5,6 @@ info:
   author: rix4uni
   severity: info
   description: Apache Pulsar login panel was detected.
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cvss-score: 0.0
-    cwe-id: CWE-200
   reference:
     - https://streamnative.io/blog/streamnative-open-sourced-and-contributed-apache-pulsar-manager-to-asf#:~:text=Apache%20Pulsar%20Manager.-,Log%20in,(pulsar)%20to%20log%20in.
     - https://twitter.com/fattselimi/status/1648415859453435904

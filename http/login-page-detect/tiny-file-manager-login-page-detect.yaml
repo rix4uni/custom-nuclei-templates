@@ -3,15 +3,17 @@ id: tiny-file-manager-login-page-detect
 info:
   name: Tiny File Manager - Login Page Detect.
   author: rix4uni
-  severity: critical
+  severity: info
   description: Tiny File Manager - Login Page Detect.
   reference:
     - https://hackerone.com/reports/1747146
     - https://elements.heroku.com/buttons/skmdimtiaj/tinyfilemanager
   metadata:
-    verified: true
-    shodan-query: http.title:"Tiny File Manager"
-  tags: default-login,tiny,filemanager
+    shodan-query:
+      - http.title:"Tiny File Manager"
+    fofa-query:
+      - title="Tiny File Manager"
+  tags: default,tiny,filemanager
 
 requests:
   - method: GET
@@ -19,7 +21,6 @@ requests:
       - "{{BaseURL}}"
       - "{{BaseURL}}/tinyfilemanager.php"
       - "{{BaseURL}}/tiny/tinyfilemanager.php"
-      - "{{BaseURL}}/tinyfilemanager.php?p=&view=tinyfilemanager.php"
 
     stop-at-first-match: true
     matchers-condition: and
@@ -28,7 +29,6 @@ requests:
         part: body
         words:
           - "Tiny File Manager"
-        condition: or
 
       - type: status
         status:

@@ -3,12 +3,8 @@ id: aem-login-page-detect
 info:
   name: Adobe AEM Login Page - Detect
   author: rix4uni
-  severity: high
+  severity: info
   description: Multiple Adobe AEM login page detected.
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
-    cvss-score: 8.3
-    cwe-id: CWE-522
   reference:
     - https://github.com/0ang3el/aem-hacker/blob/master/aem_hacker.py
     - https://github.com/projectdiscovery/nuclei-templates/blob/main/default-logins/aem/aem-default-login.yaml

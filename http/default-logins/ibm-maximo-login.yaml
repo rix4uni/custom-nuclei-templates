@@ -9,7 +9,6 @@ info:
     - https://www.ibm.com/docs/en/mam-saas/7.6.0.5?topic=product-signing-in-using-default-user-id
     - https://twitter.com/AliKM2000/status/1619730029499523075
   metadata:
-    verified: true
     shodan-query:
       - http.favicon.hash:-465775588
       - http.favicon.hash:-399298961

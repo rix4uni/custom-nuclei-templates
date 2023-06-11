@@ -3,15 +3,11 @@ id: apollo-login-page-detect
 info:
   name: Apollo Login Page Detect
   author: rix4uni
-  severity: high
+  severity: info
   description: An Apollo default login was discovered.
   reference:
     - https://github.com/apolloconfig/apollo
     - https://twitter.com/m359ah/status/1610226772104052742
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
-    cvss-score: 8.3
-    cwe-id: CWE-522
   metadata:
     shodan-query: http.favicon.hash:11794165
   tags: apollo,default-login

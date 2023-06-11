@@ -8,6 +8,8 @@ info:
   metadata:
     shodan-query:
       - http.favicon.hash:-276759139
+    fofa-query:
+      - title="Sign In - Chef Manage"
   tags: default-login,misconfig,chef-automate
 
 requests:

@@ -5,10 +5,6 @@ info:
   author: rix4uni
   severity: info
   description: Apache Airflow login panel was detected.
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cvss-score: 0.0
-    cwe-id: CWE-200
   reference:
     - https://twitter.com/MohamedVeten1/status/1516102910819680260
   metadata:
