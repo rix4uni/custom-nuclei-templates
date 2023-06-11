@@ -1,0 +1,38 @@
+id: apache-server-status
+
+info:
+  name: Apache Server Status Disclosure
+  author: rix4uni
+  severity: medium
+  description: Apache server-status could be a P4 or a P1. At times, it's possible to see credentials for apps being hosted on the web server. 
+  reference:
+    - https://twitter.com/emenalf/status/1181490982325571585
+  metadata:
+    google-query:
+      - intitle:"Apache Status" intext:"Apache Server Status for"
+      - inurl:"server-status"
+    fofa-query:
+      - body="Apache Server Status for"
+      - title="Apache Status"
+    shodan-query:
+      - http.title:"Apache Status"
+      - http.html:"Apache Server Status for"
+  tags: apache-server-status,apache,server-status,exposures
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/server-status"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "Apache Server Status for"
+          - "<title>Apache Status</title>"
+          
+      - type: status
+        status:
+          - 200
