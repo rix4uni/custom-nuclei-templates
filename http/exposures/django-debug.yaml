@@ -12,6 +12,10 @@ info:
       - body="DisallowedHost at /"
     fofa-query:
       - http.title:"DisallowedHost at /"
+    hunter-query:
+      - web.title="DisallowedHost at /"
+    zoomeye-query:
+      - title:"DisallowedHost at /"
   tags: exposure,django,debug
 
 http:

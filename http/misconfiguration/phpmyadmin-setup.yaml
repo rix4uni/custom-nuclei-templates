@@ -10,11 +10,13 @@ info:
     cvss-score: 5.3
     cwe-id: CWE-200
   reference:
-    https://hackerone.com/reports/297339
-    https://medium.com/@Dhamuharker/phpmyadmin-setup-is-accessible-without-authentication-5ab76ed28614
+    - https://hackerone.com/reports/297339
+    - https://medium.com/@Dhamuharker/phpmyadmin-setup-is-accessible-without-authentication-5ab76ed28614
   metadata:
-    google-query: inurl:"phpMyAdmin/setup/index.php"
-    shodan-query: http.title:"phpMyAdmin"
+    google-query:
+      - inurl:"phpMyAdmin/setup/index.php"
+    shodan-query:
+      - http.title:"phpMyAdmin"
   tags: phpmyadmin,authetication,misconfig
 
 requests:

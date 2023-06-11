@@ -1,0 +1,28 @@
+id: elmah-log-file
+
+info:
+  name: elmah.axd Disclosure
+  author: rix4uni
+  severity: medium
+  reference:
+    - https://twitter.com/RootxRavi/status/1640698410515812353
+  tags: logs,exposure
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/elmah.axd"
+      - "{{BaseURL}}/ELMAH.axd"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      # - type: word
+      #   part: body
+      #   words:
+      #     - 'Error Log for'
+
+      - type: status
+        status:
+          - 200
+          - 403
