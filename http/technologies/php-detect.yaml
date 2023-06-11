@@ -1,0 +1,23 @@
+id: php-detect
+
+info:
+  name: PHP Detect
+  author: rix4uni
+  severity: info
+  metadata:
+    shodan-query:
+      - "X-Powered-By: PHP"
+  tags: tech,php
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    extractors:
+      - type: regex
+        part: header
+        group: 1
+        regex:
+          - "X-Powered-By: PHP/([0-9.]+)"
+          - "PHP/([0-9.]+)"
