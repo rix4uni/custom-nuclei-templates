@@ -1,13 +1,15 @@
-id: php-detect
+id: apache-detect
 
 info:
-  name: PHP Detect
+  name: Apache Detect
   author: rix4uni
   severity: info
   metadata:
     shodan-query:
-      - "X-Powered-By: PHP"
-  tags: tech,php
+      - "Server: Apache"
+    fofa-query:
+      - "Server: Apache"
+  tags: tech,apache
 
 http:
   - method: GET
@@ -18,5 +20,4 @@ http:
       - type: regex
         part: header
         regex:
-          - "X-Powered-By: PHP/([0-9.]+)"
-          - "PHP/([0-9.]+)"
+          - "Server: Apache/([0-9.]+)|Apache"

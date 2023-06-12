@@ -1,13 +1,15 @@
-id: php-detect
+id: bytex-detect
 
 info:
-  name: PHP Detect
+  name: bytex Detect
   author: rix4uni
   severity: info
   metadata:
     shodan-query:
-      - "X-Powered-By: PHP"
-  tags: tech,php
+      - "Server: bytex"
+    fofa-query:
+      - "Server: bytex"
+  tags: tech,bytex
 
 http:
   - method: GET
@@ -18,5 +20,4 @@ http:
       - type: regex
         part: header
         regex:
-          - "X-Powered-By: PHP/([0-9.]+)"
-          - "PHP/([0-9.]+)"
+          - "Server: bytex/([0-9.]+)|bytex"

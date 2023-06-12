@@ -1,13 +1,15 @@
-id: php-detect
+id: awselb-detect
 
 info:
-  name: PHP Detect
+  name: awselb Detect
   author: rix4uni
   severity: info
   metadata:
     shodan-query:
-      - "X-Powered-By: PHP"
-  tags: tech,php
+      - "Server: awselb"
+    fofa-query:
+      - "Server: awselb"
+  tags: tech,awselb
 
 http:
   - method: GET
@@ -18,5 +20,4 @@ http:
       - type: regex
         part: header
         regex:
-          - "X-Powered-By: PHP/([0-9.]+)"
-          - "PHP/([0-9.]+)"
+          - "Server: awselb/([0-9.]+)|awselb"

@@ -1,13 +1,15 @@
-id: php-detect
+id: nginx-detect
 
 info:
-  name: PHP Detect
+  name: Nginx Detect
   author: rix4uni
   severity: info
   metadata:
     shodan-query:
-      - "X-Powered-By: PHP"
-  tags: tech,php
+      - "Server: nginx"
+    fofa-query:
+      - "Server: nginx"
+  tags: tech,nginx
 
 http:
   - method: GET
@@ -18,5 +20,4 @@ http:
       - type: regex
         part: header
         regex:
-          - "X-Powered-By: PHP/([0-9.]+)"
-          - "PHP/([0-9.]+)"
+          - "Server: nginx/([0-9.]+)|nginx"

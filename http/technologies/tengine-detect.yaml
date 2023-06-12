@@ -1,13 +1,15 @@
-id: php-detect
+id: tengine-detect
 
 info:
-  name: PHP Detect
+  name: Tengine Detect
   author: rix4uni
   severity: info
   metadata:
     shodan-query:
-      - "X-Powered-By: PHP"
-  tags: tech,php
+      - "Server: Tengine"
+    fofa-query:
+      - "Server: Tengine"
+  tags: tech,tengine
 
 http:
   - method: GET
@@ -18,5 +20,4 @@ http:
       - type: regex
         part: header
         regex:
-          - "X-Powered-By: PHP/([0-9.]+)"
-          - "PHP/([0-9.]+)"
+          - "Server: Tengine/([0-9.]+)|Tengine"

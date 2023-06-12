@@ -1,13 +1,15 @@
-id: php-detect
+id: asp-dot-net-detect
 
 info:
-  name: PHP Detect
+  name: ASP.NET Detect
   author: rix4uni
   severity: info
   metadata:
     shodan-query:
-      - "X-Powered-By: PHP"
-  tags: tech,php
+      - "X-Powered-By: ASP.NET"
+    fofa-query:
+      - "X-Powered-By: ASP.NET"
+  tags: tech,asp
 
 http:
   - method: GET
@@ -18,5 +20,4 @@ http:
       - type: regex
         part: header
         regex:
-          - "X-Powered-By: PHP/([0-9.]+)"
-          - "PHP/([0-9.]+)"
+          - "X-Powered-By: ASP.NET/([0-9.]+)|ASP.NET"
