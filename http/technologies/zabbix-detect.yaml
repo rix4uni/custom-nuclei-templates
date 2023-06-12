@@ -4,6 +4,9 @@ info:
   name: Zabbix Detect
   author: rix4uni
   severity: info
+  description: description
+  reference:
+    - https://
   metadata:
     shodan-query:
       - http.favicon.hash:892542951

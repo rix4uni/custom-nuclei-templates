@@ -6,7 +6,14 @@ info:
   severity: info
   description: description
   reference:
-    - https://
+    - https://twitter.com/bug_vs_me/status/1630423742936649733
+  metadata:
+    google-query:
+      - inurl:"netlify.app/admin"
+    shodan-query:
+      - "Server: Netlify"
+    fofa-query:
+      - server=="Netlify"
   tags: netlify,detect,technologies
 
 http:
@@ -24,3 +31,4 @@ http:
       - type: status
         status:
           - 200
+          - 404
