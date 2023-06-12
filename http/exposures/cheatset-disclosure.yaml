@@ -1,0 +1,36 @@
+id: cheatset-disclosure
+
+info:
+  name: Cheatset Disclosure
+  author: rix4uni
+  severity: high
+  reference:
+    - https://twitter.com/shaybt12/status/1667590908391354368
+  metadata:
+    fofa-query:
+      - "--apiserver-advertise-address"
+  tags: exposure,cheatset
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/cheatset"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "--apiserver-advertise-address"
+          - "--apiserver-cert-extra-sans"
+          - "--discovery-token-ca-cert-hash"
+          - "kubeadm init --config config.yaml"
+          - "UI Login"
+          - "Zabbix Mysql:"
+          - "user: zabbix"
+          - "Zabbix UI:"
+        
+      - type: status
+        status:
+          - 200

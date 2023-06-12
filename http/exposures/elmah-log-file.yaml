@@ -4,25 +4,37 @@ info:
   name: elmah.axd Disclosure
   author: rix4uni
   severity: medium
+  description: ELMAH Exposure Leads to Dashboard Access via Leaked Cookies of Authorized User.
   reference:
     - https://twitter.com/RootxRavi/status/1640698410515812353
-  tags: logs,exposure
+    - https://www.acunetix.com/vulnerabilities/web/elmah-axd-information-disclosure
+  metadata:
+    google-query:
+      - intitle:"Error log for" intext:"elmah"
+    shodan-query:
+      - http.title:"Error log for" http.html:"elmah"
+    fofa-query:
+      - title="Error log for" && body="elmah"
+  tags: elmah,logs,exposure
 
 requests:
   - method: GET
     path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/elmah"
       - "{{BaseURL}}/elmah.axd"
       - "{{BaseURL}}/ELMAH.axd"
+      - "{{BaseURL}}/Elmah.axd"
+      - "{{BaseURL}}/ErrorReport.axd"
 
     stop-at-first-match: true
     matchers-condition: and
     matchers:
-      # - type: word
-      #   part: body
-      #   words:
-      #     - 'Error Log for'
+      - type: word
+        part: body
+        words:
+          - 'Error Log for'
 
       - type: status
         status:
           - 200
-          - 403
