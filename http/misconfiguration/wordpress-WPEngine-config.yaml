@@ -12,6 +12,8 @@ info:
   metadata:
     google-query:
       - inurl:"_wpeprivate"
+    fofa-query:
+      - body="_wpeprivate"
   tags: WPEngine-config,wordpress,_wpeprivate,misconfiguration
 
 requests:
