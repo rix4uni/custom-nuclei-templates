@@ -1,7 +1,7 @@
-id: powerjob-login-page-detect
+id: powerjob-panel
 
 info:
-  name: PowerJob - Login Page Detect
+  name: PowerJob Panel - Detect
   author: rix4uni
   severity: info
   description: PowerJob default login credentials were discovered.

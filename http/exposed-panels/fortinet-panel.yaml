@@ -1,7 +1,7 @@
-id: fortinet-login-page-detect
+id: fortinet-panel
 
 info:
-  name: Fortinet FortiWeb - Login Page Detect
+  name: Fortinet FortiWeb Panel - Detect
   author: rix4uni
   severity: info
   description: Fortinet FortiWeb login panel was detected.

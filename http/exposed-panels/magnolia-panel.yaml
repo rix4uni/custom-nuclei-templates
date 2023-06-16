@@ -1,7 +1,7 @@
-id: magnolia-login-page-detect
+id: magnolia-panel
 
 info:
-  name: Magnolia - Login Page Detect
+  name: Magnolia Panel - Detect
   author: rix4uni
   severity: info
   description: Mangnolia CMS default credentials were discovered.

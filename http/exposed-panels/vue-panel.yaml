@@ -1,7 +1,7 @@
-id: vue-login-page-detect
+id: vue-panel
 
 info:
-  name: Vue Login - Login Page Detect
+  name: Vue Login Panel - Detect
   author: rix4uni
   severity: info
   description: Multiple Vue login page detected.

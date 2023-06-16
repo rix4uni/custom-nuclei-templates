@@ -1,7 +1,7 @@
-id: pulsar-login-page-detect
+id: pulsar-panel
 
 info:
-  name: Apache Pulsar - Login Page Detect
+  name: Apache Pulsar Panel - Detect
   author: rix4uni
   severity: info
   description: Apache Pulsar login panel was detected.

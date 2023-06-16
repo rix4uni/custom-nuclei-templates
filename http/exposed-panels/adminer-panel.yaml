@@ -1,7 +1,7 @@
-id: adminer-login-page-detect
+id: adminer-panel
 
 info:
-  name: Adminer - Login Page Detect
+  name: Adminer Panel - Detect
   author: rix4uni
   severity: info
   description: Adminer contains a default login vulnerability. An attacker can obtain access to user accounts and access sensitive information, modify data, and/or execute unauthorized operations.

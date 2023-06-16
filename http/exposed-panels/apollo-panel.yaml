@@ -1,7 +1,7 @@
-id: apollo-login-page-detect
+id: apollo-panel
 
 info:
-  name: Apollo - Login Page Detect
+  name: Apollo Panel - Detect
   author: rix4uni
   severity: info
   description: An Apollo default login was discovered.

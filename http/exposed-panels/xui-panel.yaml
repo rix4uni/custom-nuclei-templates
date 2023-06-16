@@ -1,7 +1,7 @@
-id: xui-login-page-detect
+id: xui-panel
 
 info:
-  name: X-UI - Login Page Detect
+  name: X-UI Panel - Detect
   author: rix4uni
   severity: info
   description: X-UI contains default credentials. An attacker can obtain access to user accounts and access sensitive information, modify data, and/or execute unauthorized operations.
