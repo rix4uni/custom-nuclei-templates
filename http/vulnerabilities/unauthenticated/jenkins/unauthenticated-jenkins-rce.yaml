@@ -1,0 +1,40 @@
+id: unauthenticated-jenkins-rce
+
+info:
+  name: Unauthenticated Jenkins RCE Dashboard
+  author: rix4uni
+  severity: high
+  description:
+    - Jenkins is susceptible to a remote code execution vulnerability due to accessible script functionality.
+  reference:
+    - https://logicbomb.medium.com/bugbounty-from-finding-jenkins-instance-to-command-execution-secure-your-jenkins-instance-9bd1e75c2288
+    - https://0x1bitcrack3r.medium.com/how-i-found-misconfigured-jenkins-instances-of-different-organizations-using-shodan-9837088f4ec7
+  metadata:
+    google-query:
+      - intitle:"Dashboard [Jenkins]"
+    shodan-query:
+      - http.title:"Dashboard [Jenkins]"
+    censys-query:
+      - services.http.response.html_title="Dashboard [Jenkins]"
+    fofa-query:
+      - title="Dashboard [Jenkins]"
+    hunter-query:
+      - web.title="Dashboard [Jenkins]"
+  tags: jenkins
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/script/"
+      - "{{BaseURL}}/jenkins/script/"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "println(Jenkins.instance.pluginManager.plugins)"
+          - "<title>Script Console [Jenkins]</title>"
+
+      - type: status
+        status:
+          - 200
