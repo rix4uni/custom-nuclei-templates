@@ -4,8 +4,8 @@ info:
   name: Unauthenticated Jenkins RCE Dashboard
   author: rix4uni
   severity: high
-  description:
-    - Jenkins is susceptible to a remote code execution vulnerability due to accessible script functionality.
+  description: |
+    Jenkins is susceptible to a remote code execution vulnerability due to accessible script functionality.
   reference:
     - https://logicbomb.medium.com/bugbounty-from-finding-jenkins-instance-to-command-execution-secure-your-jenkins-instance-9bd1e75c2288
     - https://0x1bitcrack3r.medium.com/how-i-found-misconfigured-jenkins-instances-of-different-organizations-using-shodan-9837088f4ec7

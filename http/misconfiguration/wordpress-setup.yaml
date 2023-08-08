@@ -11,6 +11,8 @@ info:
   metadata:
     google-query:
       - inurl:"/wp-admin/setup-config.php?step=1"
+    shodan-query:
+      - http.title:"wordpress"
   tags: wordpress,authetication,misconfig
 
 requests:
