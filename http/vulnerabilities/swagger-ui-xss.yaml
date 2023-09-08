@@ -45,8 +45,8 @@ http:
     matchers-condition: and
     matchers:
       - type: word
+        part: body
         words:
-          - "rix4uni"
           - "Swagger UI"
 
       - type: status

