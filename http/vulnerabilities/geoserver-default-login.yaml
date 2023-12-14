@@ -1,0 +1,57 @@
+id: geoserver-default-login
+
+info:
+  name: Geoserver Admin - Default Login
+  author: rix4uni
+  severity: high
+  description: Geoserver default admin credentials were discovered.
+  reference:
+    - https://medium.com/@ratnadip1998/how-i-mass-hunt-for-admin-panel-access-8c2ad145054
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
+    cvss-score: 8.3
+    cwe-id: CWE-522
+  metadata:
+    verified: true
+    max-request: 2
+    google-query:
+      - inurl:/geoserver/web/
+    shodan-query:
+      - http.title:"GeoServer"
+      - http.component:"GeoServer"
+    censys-query:
+      - services.http.response.html_title="GeoServer"
+    fofa-query:
+      - title="GeoServer"
+    hunter-query:
+      - web.title="GeoServer"
+  tags: geoserver,default-login
+
+http:
+  - raw:
+      - |
+        POST /geoserver/j_spring_security_check HTTP/1.1
+        Host: {{Hostname}}
+        Content-Type: application/x-www-form-urlencoded
+
+        username={{user}}&password={{pass}}
+      - |
+        GET /geoserver/web/ HTTP/1.1
+        Host: {{Hostname}}
+
+    attack: pitchfork
+    payloads:
+      user:
+        - admin
+      pass:
+        - geoserver
+    host-redirects: true
+    max-redirects: 2
+    cookie-reuse: true
+    matchers:
+      - type: dsl
+        dsl:
+          - "contains(tolower(location_1), '/geoserver/web') && contains(body_2, '<span>admin</span>')"
+          - "!contains(tolower(location_1), 'error=true')"
+          - 'status_code_1 == 302'
+        condition: and

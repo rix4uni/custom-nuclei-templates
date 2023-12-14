@@ -3,7 +3,7 @@ id: symfony-files
 info:
   name: symfony Disclosure
   author: rix4uni
-  severity: low
+  severity: critical
   reference:
     - https://twitter.com/nav1n0x/status/1652676328901029888
     - https://twitter.com/SaraBadran18/status/1652344609794654210

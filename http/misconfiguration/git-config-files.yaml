@@ -6,6 +6,10 @@ info:
   severity: medium
   description: Searches for the pattern /.git/config on passed URLs.
   reference: https://www.acunetix.com/vulnerabilities/web/git-repository-found/
+  metadata:
+    google-query:
+      - "index of /.git"
+      - intext:"index of /.git" "parent directory"
   tags: git,config
 
 requests:
