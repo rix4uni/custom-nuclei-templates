@@ -30,11 +30,10 @@ http:
     fuzzing:
       - part: query
         type: postfix
-        mode: multiple
+        mode: single
         fuzz:
           - "{{injection}}"
 
-    stop-at-first-match: true
     matchers-condition: and
     matchers:
       - type: word
