@@ -284,11 +284,17 @@ requests:
       - "{{RootURL}}/res/security-policy.txt"
 
     stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: regex
+        regex:
+          - "scope|Eligible Targets|reward|bounty|monetary|compensation|we offer a monetary|We offer reward|monetary reward|eligible for a reward|we award a bounty|We offer monetary rewards"
+        condition: or
+
     extractors:
       - type: regex
-        part: body
         regex:
           - "scope|Eligible Targets|reward|bounty|monetary|compensation|we offer a monetary|We offer reward|monetary reward|eligible for a reward|we award a bounty|We offer monetary rewards"
 
-#incorrect template
+#giving lot's of false positive results
 # echo "https://fintual.cl" | nuclei -duc -silent -t security-txt.yaml
