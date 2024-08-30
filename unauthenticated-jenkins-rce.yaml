@@ -3,7 +3,7 @@ id: unauthenticated-jenkins-rce
 info:
   name: Unauthenticated Jenkins RCE Dashboard
   author: rix4uni
-  severity: high
+  severity: critical
   description: |
     Jenkins is susceptible to a remote code execution vulnerability due to accessible script functionality.
   reference:
