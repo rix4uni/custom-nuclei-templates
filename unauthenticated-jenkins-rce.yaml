@@ -12,14 +12,19 @@ info:
   metadata:
     google-query:
       - intitle:"Dashboard [Jenkins]"
+      - intitle:"Script Console [Jenkins]"
     shodan-query:
       - http.title:"Dashboard [Jenkins]"
+      - http.title:"Script Console [Jenkins]"
     censys-query:
       - services.http.response.html_title="Dashboard [Jenkins]"
+      - services.http.response.html_title="Script Console [Jenkins]"
     fofa-query:
       - title="Dashboard [Jenkins]"
+      - title="Script Console [Jenkins]"
     hunter-query:
       - web.title="Dashboard [Jenkins]"
+      - web.title="Script Console [Jenkins]"
   tags: jenkins
 
 http:
